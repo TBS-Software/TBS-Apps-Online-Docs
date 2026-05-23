@@ -1,0 +1,224 @@
+{
+  "main": {
+    "id": "8b7afefe6405ab28",
+    "type": "split",
+    "children": [
+      {
+        "id": "07c534e380fe335c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "18a05f74955043bf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TBSGISDOC_0_0_0_StartPage.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "TBSGISDOC_0_0_0_StartPage"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "af45dccb1daa8619",
+    "type": "split",
+    "children": [
+      {
+        "id": "eea17233840f2f5b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c5dfacaa2167ca8e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Файловый менеджер"
+            }
+          },
+          {
+            "id": "edc481928a364cfe",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Поиск"
+            }
+          },
+          {
+            "id": "e71826cc03cf2ee2",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Закладки"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "274f38f1b37371f2",
+    "type": "split",
+    "children": [
+      {
+        "id": "5129b110efd4e21c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8e75c991af0bdc1c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "SUMMARY.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Обратные ссылки для SUMMARY"
+            }
+          },
+          {
+            "id": "931caf005257ec84",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "SUMMARY.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Исходящие ссылки из SUMMARY"
+            }
+          },
+          {
+            "id": "7e0ee8e6c05840ff",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Теги"
+            }
+          },
+          {
+            "id": "0cba34491ffa2df8",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Все свойства"
+            }
+          },
+          {
+            "id": "7264ef3ef328d512",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "SUMMARY.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Структура SUMMARY"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "bases:Создать новую базу": false
+    }
+  },
+  "active": "18a05f74955043bf",
+  "lastOpenFiles": [
+    "SUMMARY.md",
+    "TBSGISDOC_4_4_0_cadPlugin_Geomarkers.md",
+    "TBSGISDOC_0_0_0_StartPage.md",
+    "assets/image-2026-05-23-2.png",
+    "TBSGISDOC_20_updates.md",
+    "TBSGISDOC_4_3_1_cadPlugin_GDAL_import.md",
+    "TBSGISDOC_4_5_0_cadPlugin_OpenData.md",
+    "TBSGISDOC_2_1_0_ConfiguratorApp.md",
+    "assets/image-2026-05-23-1.png",
+    "assets/image-2026-05-23.png",
+    "TBSGISDOC_2_0_0_Installation.md",
+    "TBSGISDOC_4_2_7_cadPlugin_OGR_linkTexts.md",
+    "TBSGISDOC_3_3_0_GeoExport.md",
+    "TBSGISDOC_3_2_0_GeoImport.md",
+    "TBSGISDOC_4_2_1_cadPlugin_OGR_import.md",
+    "TBSGISDOC_4_2_3_cadPlugin_OGR_geomAnalyze.md",
+    "TBSGISDOC_4_2_4_cadPlugin_OGR_geomTrim.md",
+    "TBSGISDOC_4_2_5_cadPlugin_OGR_dwgProj.md",
+    "TBSGISDOC_4_2_6_cadPlugin_OGR_importText.md",
+    "TBSGISDOC_4_3_2_cadPlugin_GDAL_tin2raster.md",
+    "TBSGISDOC_4_3_0_cadPlugin_GDAL.md",
+    "TBSGISDOC_4_2_0_cadPlugin_OGR.md",
+    "TBSGISDOC_4_7_0_cadPlugin_Help.md",
+    "assets/image-2026-05-22-12.png",
+    "assets/image-2026-05-22-11.png",
+    "assets/image-2026-05-22-10.png",
+    "assets/image-2026-05-22-9.png",
+    "TBSGISDOC_4_6_0_cadPlugin_Attrs.md",
+    "assets/image-2026-05-22-8.png",
+    "assets/image-2026-05-22-7.png",
+    "TBSGISDOC_4_2_2_cadPlugin_OGR_export.md",
+    "TBSGISDOC_4_1_0_cadPlugin_CS.md",
+    "assets/image-2026-05-22-6.png",
+    "TBSGISDOC_4_0_0_cadPlugin.md",
+    "TBSGISDOC_3_1_0_CsManager.md"
+  ]
+}

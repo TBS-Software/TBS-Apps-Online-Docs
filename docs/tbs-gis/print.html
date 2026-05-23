@@ -1,0 +1,1061 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Руководство пользователя TBS-GIS</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Руководство пользователя TBS-GIS</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<center>Руководство пользователя к приложению TBS GIS </br>  (версия 5.0.0)
+</br>
+</br>
+<p><img src="assets/image-2026-05-23-2.png" alt="352" /></p>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+ООО «ТиБиЭс», 2026 г.
+</center>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Общее-описание-и-условия-использования"><a class="header" href="#Общее-описание-и-условия-использования">Общее описание и условия использования</a></h1>
+<p>Приложение TBS-GIS изначально (осень 2022г.) разрабатывалось как надстройка к САПР nanoCAD для закрытия функциональных потребностей в задачах импорта-экспорта векторных и растровых геоданных с возможностью пересчета координат. Надстройка претерпела несколько масштабных обновлений, и к настоящей версии 5.0.0 представляет собой клиент-серверное приложение с REST-архитектурой. Эволюция к данной структуре была обусловлена, главным образом, неразрешаемыми конфликтами нативных зависимостей между рабочими библиотеками САПР (nanoCAD) и используемым в работе пакетом библиотек OSGeo GDAL. Реализация REST-подхода позволила решить эту проблему; кроме того, теперь TBS GIS может быть гибко развернут и для некоторых других САПР.</p>
+<p>TBS-GIS в настоящем виде (с версии 5.0.0) представляет собой набор библиотек на C# (в ранних версиях имели место библиотеки на C++/CLI). "Серверная" составляющая (приложение "TBS-GIS-Server.exe") использует ограниченный .NET API OSGeo GDAL, а также вспомогательные библиотеки SQLite, YandexDisk API. Клиентское приложение использует вспомогательную библиотеку RestSharp для обработки REST-запросов к запущенному REST-серверу. Больше иных зависимостей нет. Подробнее о настройке приложения см. в Главе 2 <a href="./TBSGISDOC_2_0_0_Installation.html">Установка и настройка приложения</a>.</p>
+<p>Приложение TBS-GIS для своего использования требует лицензии, приобретаемой у менеджеров <a href="https://tbs-soft.ru/contacts">компании TBS</a>. Некоторые функции доступны без лицензии.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Установка-и-настройка-приложения"><a class="header" href="#Установка-и-настройка-приложения">Установка и настройка приложения</a></h1>
+<p>Приложение TBS GIS распространяется через инсталлятор. По умолчанию, приложение устанавливается в папку <code>C:\Program Files\TBS\TBS GIS</code>.</p>
+<p>С версии 5.0.0 TBS GIS состоит из "серверной" и "клиентской" частей. При первом запуске приложения <code>TBS-GIS-Server.exe</code> из папки <code>\Server</code> папки приложения на ПК будет создана вспомогательная папка <code>C:\TBS\TBS_GIS_Data</code>, в корне папки будет создан файл <code>TBS_GIS_Configs.xml</code> следующего вида:</p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;TbsGisAppConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;PATH_OPEN_DATA&gt;C:\TBS\TBS_GIS_Data\OpenData&lt;/PATH_OPEN_DATA&gt;
+  &lt;PATH_LOGS&gt;C:\TBS\TBS_GIS_Data\LOGS&lt;/PATH_LOGS&gt;
+  &lt;PATH_TEMP_DATA&gt;C:\TBS\TBS_GIS_Data\TEMP&lt;/PATH_TEMP_DATA&gt;
+  &lt;PATHS_DB_PROJ&gt;
+    &lt;string&gt;C:\TBS\TBS_GIS_Data\proj\proj.db&lt;/string&gt;
+  &lt;/PATHS_DB_PROJ&gt;
+  &lt;RestServerConnection&gt;
+    &lt;REST_ADDRESS&gt;http://localhost&lt;/REST_ADDRESS&gt;
+    &lt;REST_PORT&gt;20193&lt;/REST_PORT&gt;
+  &lt;/RestServerConnection&gt;
+  &lt;TimeoutDemLoading&gt;20&lt;/TimeoutDemLoading&gt;
+  &lt;TimeoutCloseNativeFiles&gt;100&lt;/TimeoutCloseNativeFiles&gt;
+&lt;/TbsGisAppConfig&gt;
+</code></pre>
+<p>Для редактирования настроек через через отдельное окно см. об использовании <a href="./TBSGISDOC_2_1_0_ConfiguratorApp.html">приложения-конфигуратора</a>.</p>
+<p>Системным администраторам корпоративных ПК стоит уделить внимание на раздел "RestServerConnection", он задает сетевой путь <code>REST_ADDRESS</code> и номер порта <code>REST_PORT</code>, по параметрам которого запускается REST-сервер и ожидается подключение со стороны клиентского приложения <code>TBS-GIS-Client.dll</code>. Если данные параметры у вас не используются\дублируются с чем-либо, замените их вручную.</p>
+<p>Также стоит уделить внимание тэгам <code>TimeoutDemLoading</code> - задает значение в секундах времени ожидания загрузки одного тайла DEM-слоя на квадратный градус с веб-хранилища TBS, если у вас низкая скорость интернета, можете увеличить это значение. Тэг <code>TimeoutCloseNativeFiles</code> задает время в миллисекундах (1 секунда = 1000 миллисекунд), на которое приостанавливается работа приложения при ожидании сохранения данных в файл. Актуально при обработке тяжелых данных. Если с текущим значением приложение <code>TBS-GIS-Server.exe</code> вылетает (закрывается), то увеличьте лимит.</p>
+<p>Тэги <code>PATH_OPEN_DATA</code>, <code>PATH_LOGS</code>, <code>PATH_TEMP_DATA</code> определяют абсолютные пути к вспомогательным каталогам с данными:</p>
+<ul>
+<li><code>PATH_OPEN_DATA</code> - папка, где производится поиск файлов открытых моделей рельефа (архивы и сами DEM-файлы) по квадратным градусам, загружаемые плагином при наличии подключения к сети Интернет с облачного хранилища TBS (на Яндекс-диске);</li>
+<li><code>PATH_LOGS</code> - папка с файлами логов. Логи пишутся серверным приложением <code>TBS-GIS-Server.exe</code> для всех выполняемых действий, они нужны для диагностики проблем при обработке геоданных (по запросу при наличии технической возможности логи и файлы могут быть предоставлены TBS);</li>
+<li><code>PATH_TEMP_DATA</code> - папка с временными файлами, в ней создаются пересчитанные и сконвертированные файлы геоданных при обработке функциями приложения. При закрытых приложениях её можно очищать;</li>
+</ul>
+<p><strong>Примечание</strong>: в ранней версии плагина была также папка <code>SemanticInfo</code>, в новой реализации плагина вся атрибутика сохраняется напрямую в dwg, и необходимость работы с внешними файлами отпала.</p>
+<p>После редактирования каких-либо данных необходимо сохранить данный XML-файл и перезапустить серверное приложение <code>TBS-GIS-Server.exe</code>, а также любые САПР, в которых загружены плагины - TBS GIS.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="О-конфигураторе-и-импорте-систем-координат"><a class="header" href="#О-конфигураторе-и-импорте-систем-координат">О конфигураторе и импорте систем координат</a></h1>
+<p>В составе TBS GIS имеется отдельное приложение, запускаемое вне контекста какой-либо САПР и позволяющее:</p>
+<ul>
+<li>задать настройки приложения;</li>
+<li>импортировать в БД СК определение системы координат из строчного вида WKT или proj4 с его проверкой на корректность;</li>
+<li>импортировать в БД СК набор определений WKT из текстового файла (одна строка = одно определение);</li>
+<li>импортировать в БД СК набор определений proj4 из текстового файла (одна строка = одно определение);</li>
+<li>кэшировать информацию о системах координат после редактирования БД СК;</li>
+</ul>
+<p>Приложение находится в <code>\net8.0-windows\TBS-GIS-ConfiguratorApp.exe</code></p>
+<h2 id="Настройка-параметров-приложения"><a class="header" href="#Настройка-параметров-приложения">Настройка параметров приложения</a></h2>
+<p>Запустите приложение с флагом <code>-config</code> или воспользуйтесь сценарием <code>scenario_ShowEditor.bat</code>.</p>
+<p><img src="assets/image-2026-05-23.png" alt="" /></p>
+<p>В данной форме можно поменять папки для ресурсов через кнопки "Задать" напротив каждого из путей.</p>
+<p>Можно отредактировать параметры REST-сервера, прочие настройки. По нажатию на "Применить изменения" данные будут сохранены в конфиг приложения, а само окно закрыто.</p>
+<h2 id="Проверка-строкового-определения-СК-и-импорт-в-БД"><a class="header" href="#Проверка-строкового-определения-СК-и-импорт-в-БД">Проверка строкового определения СК и импорт в БД</a></h2>
+<p>Запустите приложение с флагом <code>-csCreateFrom</code> или воспользуйтесь сценарием <code>scenario_ValidateCs.bat</code>.</p>
+<p><img src="assets/image-2026-05-23-1.png" alt="" /></p>
+<p>Установите флажок в области "Тип определения системы координат", чем представлен текст, скопированный в поле "Текстовое определение". Далее нажмите на кнопку "Проверить СК на корректность", если текстовая запись корректна, то в текстовом поле "Информация об ошибках" появится сообщение "Ошибок нет", а кнопка "Импортировать СК в БД" станет доступна для выбора. Если в определении будут ошибки, то они отобразятся в текстовом поле.</p>
+<p>Текстовое поле "Наименование системы координат" обновится после проверки СК на корректность, в нём отобразится распознанное имя СК по коду. Вы можете его отредактировать перед импортом в БД, а можете оставить как есть. Крайне <strong>не рекомендуется</strong> использовать кириллицу в названиях.</p>
+<p>Импорт определения осуществляется в основную базу <code>proj.db</code> в таблицу <code>projected_crs</code> с именем группы <code>CUSTOM</code></p>
+<h2 id="Обновление-БД-СК"><a class="header" href="#Обновление-БД-СК">Обновление БД СК</a></h2>
+<p>Запустите приложение с флагом <code>-csUpdate</code> или воспользуйтесь сценарием <code>scenario_UpdateCs.bat</code>.</p>
+<h2 id="Пакетный-импорт-в-БД-определений-из-текстового-файла"><a class="header" href="#Пакетный-импорт-в-БД-определений-из-текстового-файла">Пакетный импорт в БД определений из текстового файла</a></h2>
+<p>Предполагается, что в текстовом файле построчно заданы формулировки системы координат в нотации WKT или proj4. Для каждого определения будет выполняться проверка на корректность, если проверка даст ложный результат, то импорт данного определения будет пропущен. Имя СК будет автоматически распознано из определения.</p>
+<p>Импорт определений осуществляется в основную базу <code>proj.db</code> в таблицу <code>projected_crs</code> с именем группы <code>CUSTOM</code>.</p>
+<p>Если ваши определения СК записаны в формате WKT, то запустите приложение с флагом <code>-csImportFromWkt</code> и вторым флагом - абсолютный путь к текстовому файлу с определениями. Если ваши СК в формате proj4, то изменится только первый флаг <code>-csImportFromProj4</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Общие-диалоговые-окна-и-команды-приложения"><a class="header" href="#Общие-диалоговые-окна-и-команды-приложения">Общие диалоговые окна и команды приложения</a></h1>
+<p>В разделе приведено описание диалогов, которые встречаются более чем в одной функции, а также некоторых общих команд.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Диалог-выбора-систем-координат"><a class="header" href="#Диалог-выбора-систем-координат">Диалог выбора систем координат</a></h1>
+<p>Модальный диалог, отображающий часть или все определения систем координат, доступные в используемой библиотеке систем координат PROJ. Имеется возможность фильтрации списка систем координат. После первого вызова окно будет выглядеть так:</p>
+<p><img src="./assets/Pasted_image_20260522155435.png" alt="" /></p>
+<p>При выборе любой позиции списка через ЛКМ в текстовом поле снизу будет отображён полный WKT-код выбранной системы координат. Код можно скопировать в буфер обмена.
+<img src="./assets/Pasted_image_20260522155622.png" alt="" /></p>
+<p>Поле "Текущая СК" не доступно для редактирования, оно отображает текущую систему координат в зависимости от контекста (окно используется в нескольких функциях при плагинах над САПР). Кнопка "Удалить" удаляет информацию о системе координат из целевой модели в используемой САПР, кнопка "Назначить" - соответственно, задает эту информацию. Способ задания отличается в зависимости от специфики САПР, см. функции подробнее.</p>
+<p>По умолчанию в окне отображается сокращенный список определений систем координат. В "сокращенный" список попадают только те определения, имена которых содержат следующие буквосочетания: "WGS 84 / UTM zone", "Russia-", "WGS 84", "Pulkovo 1995 / Gauss-Kruger zone", "Pulkovo 1942 / 3-degree Gauss-Kruger zone". Для отображения полного списка нажмите на флажок "Отобразить весь список СК".</p>
+<p>Фильтрация систем координат осуществляется с помощью команд в правой нижней части окна. Выборка производится только по одному параметру - имени, описании, категории, имени категории и коду. Заполните текстовую строку под списком и нажмите на "Найти", результаты при их наличии будут отображены в табличной форме выше
+<img src="./assets/Pasted_image_20260522160609.png" alt="" /></p>
+<p>Выход из окна осуществляется через выбор целевой системы координат и нажатием на кнопку "Назначить". В этом случае выбранная СК будет использоваться в плагине далее. В противном случае, при закрытии окна через "крестик" в правом верхнем углу выбранные данные не будут сохранены и использованы.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Диалоги-импорта-геоданных"><a class="header" href="#Диалоги-импорта-геоданных">Диалоги импорта геоданных</a></h1>
+<p>Диалог импорта векторных и растровых геоданных в приложении TBS GIS имеет единую форму с отдельными настройками, различными для некоторых видов импорта.
+<img src="./assets/Pasted_image_20260522165911.png" alt="" /></p>
+<p>В шапке диалога жирным текстом выделена конфигурация, с которой диалог вызван. В правой части диалога "замазаны" действия, характерные для импорта векторных геоданных.</p>
+<p>Общими действиями для любых диалогов импорта являются:</p>
+<h3 id="Выбор-импортируемых-геоданных"><a class="header" href="#Выбор-импортируемых-геоданных">Выбор импортируемых геоданных</a></h3>
+<p>Кнопка "Выбор файлов для импорта" - открывается стандартный диалог выбора файлов для обработки. Может быть указано несколько файлов. По умолчанию профиль импорта "Все файлы", если типов данных для данного диалога несколько.
+<img src="./assets/Pasted_image_20260522170149.png" alt="" /></p>
+<p>После выбора файлов в поле под строкой "Структура импортируемых данных" в левой части окна будет отображена структура данных - имя файла и данные по его слоям (для векторных геоданных) и каналам (растровые геоданные):
+<img src="./assets/Pasted_image_20260522170447.png" alt="" /></p>
+<h3 id="Система-координат-модели"><a class="header" href="#Система-координат-модели">Система координат модели</a></h3>
+<p>Информация только для чтения. Какая система координат (имя) имеется у модели, из-под которой данная функция вызывается. Назначение модели системы координат осуществляется через отдельную функцию.</p>
+<h3 id="Система-координат-файлов"><a class="header" href="#Система-координат-файлов">Система координат файлов</a></h3>
+<p>Если у файлов единая система координат и она была успешно считана, и такое определение есть в библиотеке систем координат приложения, то её имя отобразится в текстовой строке. Если в импортируемых файлах несколько систем координат, либо о них нет информации, то поле будет пустым. Для указания системы координат воспользуйтесь кнопкой "Переназначить систему координат", откроется <a href="./TBSGISDOC_3_1_0_CsManager.html">стандартный диалог</a>, выберите там нужную СК и нажмите на кнопку "Назначить". Имя выбранной СК отобразится в текстовом поле.</p>
+<h3 id="Параметры-обработки"><a class="header" href="#Параметры-обработки">Параметры обработки</a></h3>
+<p>Общим параметром для любых форм импорта является флаг использования слоя входящего файла. Для векторных геоданных это наименование слоя, на котором лежат геоданные в файле, для растровых геоданных - имя оригинального файла без расширения. Включен по умолчанию.</p>
+<h2 id="Специальные-формы-диалогов"><a class="header" href="#Специальные-формы-диалогов">Специальные формы диалогов</a></h2>
+<h3 id="Импорт-векторных-геоданных"><a class="header" href="#Импорт-векторных-геоданных">Импорт векторных геоданных</a></h3>
+<p>Диалог импорта векторных геоданных включает 3 специальных параметры - инвертирование координат до и после пересчета, учёт атрибутики:
+<img src="./assets/Pasted_image_20260522171629.png" alt="" /></p>
+<p>Диалоги импорта файлов XML Росреестра, геоданных GML от МГГТ имеют тот же вид, что и форма импорта векторных геоданных, только другое наименование конфигурации. Также у МГГТ заранее назначена система координат файла на "Russia-MGGT".</p>
+<h3 id="Импорт-растровых-геоданных"><a class="header" href="#Импорт-растровых-геоданных">Импорт растровых геоданных</a></h3>
+<p><img src="./assets/Pasted_image_20260522171918.png" alt="" /></p>
+<p>Имеет настройку прозрачности растра, флаг использования файлов привязки (если при файле есть одноименный файл с 6 числами - параметрами привязки, то будет использована информация о положении растра из него). Настройка прозрачности используется только при наличии возможности её задания в целевой среде (например, в nanoCAD/AutoCAD можно, а в Renga нет).</p>
+<h3 id="Импорт-растровых-геоданных-в-виде-релеьфа-dem"><a class="header" href="#Импорт-растровых-геоданных-в-виде-релеьфа-dem">Импорт растровых геоданных в виде релеьфа (DEM)</a></h3>
+<p><img src="./assets/Pasted_image_20260522172129.png" alt="" /></p>
+<p>Имеется возможность переопределить точность импорта данных - упростить или интерполировать высоты в N число раз (число N может быть дробным и указывается в текстовом поле).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Диалог-экспорта-геоданных"><a class="header" href="#Диалог-экспорта-геоданных">Диалог экспорта геоданных</a></h1>
+<p>Диалог содержит параметры экспорта геометрии в формат векторных геоданных</p>
+<p><img src="./assets/Pasted_image_20260522175905.png" alt="" /></p>
+<p>Информация о СК модели представлена только для чтения - какую СК имеет модель, из-под которой данная функция вызывается.</p>
+<p>Целевую СК следует задать вручную, нажав на кнопку "Указать целевую систему координат", откроется <a href="./TBSGISDOC_3_1_0_CsManager.html">стандартный менеджер СК</a>, в нём необходимо выбрать нужную СК и нажать на "Назначить". После этого её имя появится в соответствующей текстовой строке.</p>
+<p>Геометрическое представление можно оставить по умолчанию "Коллекция геометрии", но лучше указать какое-то конкретное, т.к. геоданные обычно выгружаются для известного геометрического представления.</p>
+<p>Также необходимо выбрать формат, в котором будут сохранены данные из списка. Надо просто нажать на строку ЛКМ.</p>
+<p>После этого необходимо выбрать путь сохранения целевого файла (расширение подхватится для выбранного формата выше) по соответствующей кнопке.</p>
+<p>После этого можно нажать на кнопку "Экспортировать" для сохранения настроек. Дальнейшие действия будут зависеть от конкретной реализации данной функции на стороне используемой САПР.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Плагин-для-nanocad-autocad"><a class="header" href="#Плагин-для-nanocad-autocad">Плагин для nanoCAD (AutoCAD)</a></h1>
+<p>Загрузка плагина в целевую программу осуществляется самостоятельно.</p>
+<p>Папка с загружаемыми файлами расположена в папке установки приложения <code>C:\Program Files\TBS\TBS GIS</code>, подпапка <code>plugins</code>.</p>
+<p>После загрузки будет доступна новая лента <code>TBS GIS</code>.</p>
+<h2 id="Для-nanocad"><a class="header" href="#Для-nanocad">Для nanoCAD</a></h2>
+<p>См. подпапка <code>plugins\ncad</code>. Для nanoCAD 22 и старше - файл <code>TBS-GIS_nanoCAD-22.package</code>, для nanoCAD 23 и новее - файл <code>TBS-GIS_nanoCAD-23.package</code>.</p>
+<p>Порядок добавления файла в автозагрузку приведена на картинке ниже:</p>
+<ol>
+<li>Заходите на вкладку ленты "Настройки"</li>
+<li>На группе команд "Дополнения" нажмите на выпадающую кнопку "Приложения" - "Загрузка приложения"</li>
+<li>В открывшимся диалоговом окне в правом нижнем нажмите на кнопку "Приложения"</li>
+<li>В новом окне "Автозагрузку" нажмите на кнопку с "+" и в диалоге выбора файла выберите указанный выше <code>package</code>-файл в зависимости от используемой версии nanoCAD.</li>
+<li>После выбора файла последовательно закройте сперва диалог "Автозагрузка" и основной диалог "Загрузка/Выгрузка приложений".</li>
+<li>Перезапустите nanoCAD для применения изменений</li>
+</ol>
+<p><img src="./assets/Pasted_image_20260522161540.png" alt="" /></p>
+<h2 id="Для-autocad"><a class="header" href="#Для-autocad">Для AutoCAD</a></h2>
+<p>См. подпапка <code>plugins\ncad</code>. Для nanoCAD 22 и старше - файл <code>TBS-GIS_nanoCAD-22.package</code>, для nanoCAD 23 и новее - файл <code>TBS-GIS_nanoCAD-23.package</code>.</p>
+<p>Для AutoCAD до 2024 включительно см. <code>plugins\acad\2026\TBS-GIS-AutoCAD-2024_Plugin.dll</code>.</p>
+<p>Для AutoCAD 2025-2026 включительно см. <code>plugins\acad\2026\TBS-GIS-AutoCAD-2026_Plugin.dll</code>.</p>
+<p>Указанный файл в зависимости от версии AutoCAD загрузите вручную через команду NETLOAD в AutoCAD.</p>
+<p>Лента, автозагрузка через папку Addins пока не поддерживается.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Работа-с-системами-координат"><a class="header" href="#Работа-с-системами-координат">Работа с системами координат</a></h1>
+<h2 id="Команда-Менеджер-СК-tbs_gis_cs_show"><a class="header" href="#Команда-Менеджер-СК-tbs_gis_cs_show">Команда "Менеджер СК" (TBS_GIS_CS_Show)</a></h2>
+<p><img src="./assets/Pasted_image_20260522164721.png" alt="" /></p>
+<p>Позволяет задать или удалить из чертежа информацию о системе координат. По нажатию на кнопку запускается модальное окно <a href="./TBSGISDOC_3_1_0_CsManager.html">Менеджера систем координат</a>. Информация о назначенной системе координат сохраняется в пользовательские свойства чертежа (команда <code>DWGPROPS</code>).</p>
+<p><img src="./assets/Pasted_image_20260522165028.png" alt="" /></p>
+<p>Сохраняются имя и код системы координат, для удобства их интерпретации на другом ПК или в другом ПО. Работа с определением СК внутри приложения TBS-GIS строится на основе "кода СК", второй записи. Первая запись, хранящая имя, нужна только для пользователя.</p>
+<p>При выборе функции "Удалить" в окне "Менеджера систем координат" значение полей выше очищаются, но сами свойства остаются.</p>
+<h2 id="Команда-Обновить-ресурсы-СК-tbs_gis_cs_updatedb"><a class="header" href="#Команда-Обновить-ресурсы-СК-tbs_gis_cs_updatedb">Команда "Обновить ресурсы СК" (TBS_GIS_CS_UpdateDB)</a></h2>
+<p><img src="./assets/Pasted_image_20260522165456.png" alt="" /></p>
+<p>Вспомогательная команда. Если имело место изменение базы данных систем координат, то данная функция производит повторное считывание базы и кэширование определений СК. Обновленные определения будут доступны при следующих вызовах менеджера систем координат.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Работа-с-векторными-данными"><a class="header" href="#Работа-с-векторными-данными">Работа с векторными данными</a></h1>
+<p>В данной группе представлены различные команды на импорт-экспорт векторных геоданных, обработке геометрии, пересчету чертежей DWG. Команды группы сосредоточены на панели "Векторные данные" ленты CAD:</p>
+<p><img src="./assets/Pasted_image_20260522165640.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Импорт-векторных-геоданных---команда-Импорт-tbs_gis_ogr_import"><a class="header" href="#Импорт-векторных-геоданных---команда-Импорт-tbs_gis_ogr_import">Импорт векторных геоданных - команда "Импорт" (TBS_GIS_OGR_Import)</a></h1>
+<p><img src="./assets/Pasted_image_20260522213259.png" alt="" /></p>
+<p>Настройки импорта задаются в <a href="./TBSGISDOC_3_2_0_GeoImport.html">диалоговом окне</a> для импорта векторных геоданных общего вида.</p>
+<p>Геометрия пересчитывается для указанных систем координат и импортируется по следующим правилам.</p>
+<ul>
+<li>"Point" - в виде обычных точек nanoCAD (AutoCAD);</li>
+<li>"MultiPoint" - в виде набора обычных точек nanoCAD (AutoCAD);</li>
+<li>"LineString" - если 2 вершины, то в виде отрезка, если вершин &gt; 2 и среди отметок Z имеются более одной разных, то в виде 3D-полилинии из плоских сегментов, в противном случае в виде обычной полилинии на заданной отметке Z;</li>
+<li>"MultiLineString" - в виде набора разных линий по правилам для каждой "LineString" в отдельности;</li>
+<li>"Polygon" - в виде штриховки с внешним контуром и внутренними островками (при наличии у полигона внутренних границ);</li>
+<li>"MultiPolygon" - в виде штриховки, каждый отдельный Polygon - в виде отдельных внешнего и внутренних контуров;</li>
+<li>"GeometryCollection" - каждый объект по правилам выше;</li>
+</ul>
+<p><strong>Примечание</strong>: трехмерные представления геометрии в виде TIN, POLYHEDRALSURFACE преобразуются к виду MultiPolygon. Если геометрия топологически-корректна, то импортируется в виде набора отдельных 3D-граней. В противном случае - в виде отдельных точек с потерей всех рёбер триангуляции.</p>
+<p><strong>Примечание</strong>: штриховками задается прозрачность 92%. Для удобства визуальной идентификации наложенных контуров.</p>
+<p>Импортированные данные выглядят так:
+<img src="./assets/Pasted_image_20260522173325.png" alt="" /></p>
+<p>Для наборов геометрий ("MultiPoint", "MultiLineString", "GeometryCollection") атрибуты группы копируются в каждый из объектов. Атрибуты доступны к отображению через команду TBS_GIS_Attrs_ShowPallete.</p>
+<h2 id="Импорт-МГГТ-tbs_gis_ogr_import_mggt"><a class="header" href="#Импорт-МГГТ-tbs_gis_ogr_import_mggt">Импорт МГГТ (TBS_GIS_OGR_Import_MGGT)</a></h2>
+<p><img src="./assets/Pasted_image_20260522213453.png" alt="" /></p>
+<p>Импортируются файлы GML. Для импортированных файлов автоматически запускается процедура декодирования содержимого атрибутов (замены кодов на конкретные значение из XSD-файлов схем данных).</p>
+<h2 id="Импорт-xml-Росреестра-tbs_gis_ogr_import_rosreestr"><a class="header" href="#Импорт-xml-Росреестра-tbs_gis_ogr_import_rosreestr">Импорт XML Росреестра (TBS_GIS_OGR_Import_Rosreestr)</a></h2>
+<p><img src="./assets/Pasted_image_20260522213327.png" alt="" /></p>
+<p>Поддерживается ограниченное число схем:</p>
+<ul>
+<li>Кадастровый план территории (КПТ): <a href="https://rosreestr.gov.ru/upload/Doc/10-upr/KPT_v10.zip">KPT_v10</a>;</li>
+<li>Выписка о земельном участке: <a href="https://rosreestr.gov.ru/upload/Doc/10-upr/extract_about_property_land_v01.rar">extract_about_property_land</a>;</li>
+<li>Выписка об объекте недвижимости <a href="https://rosreestr.gov.ru/upload/Doc/10-upr/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D1%8B_extract_about_property_build_v01.pdf">extract_about_property_build</a>;
+Перечень поддерживаемых схем может быть расширен по запросу с предоставлением TBS примеров XML схем.</li>
+</ul>
+<p>Принцип обработки файлов Росреестра - конвертация их программно в GPKG-файл с дальнейшей обработкой как стандартных векторных геоданных.</p>
+<p>Если в атрибутах геометрии XML-файлов Росреестра заполнен тэг <code>sk_id</code>, то он выводится как имя системы координат файла. В любом случае для этих файлов необходимо задание СК вручную через форму диалога.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Экспорт-векторных-геоданных---команда-Экспорт-tbs_gis_ogr_export"><a class="header" href="#Экспорт-векторных-геоданных---команда-Экспорт-tbs_gis_ogr_export">Экспорт векторных геоданных - команда "Экспорт" (TBS_GIS_OGR_Export)</a></h1>
+<p><img src="./assets/Pasted_image_20260522213242.png" alt="" /></p>
+<p>Параметры экспорта настраиваются в <a href="./TBSGISDOC_3_3_0_GeoExport.html">диалоговом окне экспорта</a>.</p>
+<p>После нажатия на кнопку "Экспортировать" в диалоге будет предложен выбор объектов в чертеже. Фильтр типов объектов будет завязан на выбранное геометрическое представление в диалогах экспорта:</p>
+<ul>
+<li>Точечные объекты: Вхождение блока с атрибутами, Точка, Текст, Многострочный текст, Окружность (в виде точки), Таблица (в виде точки);</li>
+<li>Линейные объекты: Полилиния, Отрезок, 3d-полилиния;</li>
+<li>Площадные объекты: Штрихока, 3D-грань, полилиния с флагом Замкнуто = Да;</li>
+<li>Коллекция геометрии - все перечисленные выше типы;</li>
+</ul>
+<p>Если выбранный формат файла векторных геоданных позволяет сохранить в одном файле несколько слоев, то все они будут сохранены в выбранный файл. В противном случае - в несколько файлов, с суффиксом "-part-НОМЕР", также будет несколько файлов, если набор атрибутов слоя будет разным - так, разные вхождения блоков будут также сохранены по разным файлам.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Инструменты-анализа-геометрии"><a class="header" href="#Инструменты-анализа-геометрии">Инструменты анализа геометрии</a></h1>
+<p>Несколько команд, позволяющих тем или иным образом обработать геометрию объектов чертежа. Результат строится в виде новой геометрии с бирюзовым цветом (Cyan) и толщиной линий 0.5.</p>
+<h2 id="Команда-Буфер-объекта-tbs_gis_ogr_tools_buffers"><a class="header" href="#Команда-Буфер-объекта-tbs_gis_ogr_tools_buffers">Команда "Буфер объекта" (TBS_GIS_OGR_Tools_Buffers)</a></h2>
+<p><img src="./assets/Pasted_image_20260522190925.png" alt="" /></p>
+<p>Команда ожидает ввода расстояния, фактически, радиуса буфера и величины фасетизации (спрямления) дуговых участков. Значения по умолчанию <code>50.0</code> и <code>30.0</code> соответственно.</p>
+<p>Контур строится на заданном расстоянии от образующей геометрии (не важно, точка, линия или полигон):</p>
+<p><img src="./assets/Pasted_image_20260522185725.png" alt="" /></p>
+<h2 id="Команда-Центроид-tbs_gis_ogr_tools_centroid"><a class="header" href="#Команда-Центроид-tbs_gis_ogr_tools_centroid">Команда "Центроид" (TBS_GIS_OGR_Tools_Centroid)</a></h2>
+<p><img src="./assets/Pasted_image_20260522190943.png" alt="" /></p>
+<p>Команда без каких-либо настроек. Вычисляет геометрический центр набора геометрии и создает в нём точку.
+<img src="./assets/Pasted_image_20260522191030.png" alt="" /></p>
+<h2 id="Команда-Триангуляция-Делоне-tbs_gis_ogr_tools_delaunaycreate"><a class="header" href="#Команда-Триангуляция-Делоне-tbs_gis_ogr_tools_delaunaycreate">Команда "Триангуляция Делоне" (TBS_GIS_OGR_Tools_DelaunayCreate)</a></h2>
+<p><img src="./assets/Pasted_image_20260522191113.png" alt="" /></p>
+<p>Команда ожидает ввода минимальной длины ребра (по умолчанию <code>0</code>). Результат создается в виде набора 3D-граней. Если у исходной геометрии имеются отметки Z, то они также будут использованы, и получится триангуляция. Команду уместно применять, например, для генерации граней по 3D-точкам как результата команды "Создать рельеф" (TBS_GIS_GDAL_CreateElevation)</p>
+<p><img src="./assets/Pasted_image_20260522191402.png" alt="" /></p>
+<h2 id="Команда-Создать-выпуклую-оболочку-tbs_gis_ogr_tools_convexhull"><a class="header" href="#Команда-Создать-выпуклую-оболочку-tbs_gis_ogr_tools_convexhull">Команда "Создать выпуклую оболочку" (TBS_GIS_OGR_Tools_ConvexHull)</a></h2>
+<p><img src="./assets/Pasted_image_20260522191528.png" alt="" /></p>
+<p>Команда без каких-либо настроек. Вычисляет контур вокруг заданной геометрии в виде выпуклого многоугольника (полигон с 1 внешним контуром).</p>
+<p>Ниже представлен пример исходной геометрии и результат:</p>
+<p><img src="./assets/Pasted_image_20260522191623.png" alt="" /></p>
+<h2 id="Команда-Создать-вогнутую-оболочку-tbs_gis_ogr_tools_concavehull"><a class="header" href="#Команда-Создать-вогнутую-оболочку-tbs_gis_ogr_tools_concavehull">Команда "Создать вогнутую оболочку" (TBS_GIS_OGR_Tools_ConcaveHull)</a></h2>
+<p><img src="./assets/Pasted_image_20260522192536.png" alt="" /></p>
+<p>Команда ожидает указаний двух параметров - соотношение площадей выпуклой и вогнутой оболочек и возможность внутренних границ в результирующем полигоне. По умолчанию они равны <code>0.2</code> и <code>false</code> соответственно. В отличие от команды "Создать выпуклую оболочку" формирует вогнутую оболочку, то есть с б<em>о</em>льшим обтеканием исходной геометрии. Пример см. на картинке ниже. Слева результат команды "Создать выпуклую оболочку", а справа - настоящей команды "Создать вогнутую оболочку".
+<img src="./assets/Pasted_image_20260522192451.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Подрезка-геометрии-по-контуру---команда-Обрезать-по-контуру-tbs_gis_ogr_tools_maptrim"><a class="header" href="#Подрезка-геометрии-по-контуру---команда-Обрезать-по-контуру-tbs_gis_ogr_tools_maptrim">Подрезка геометрии по контуру - команда "Обрезать по контуру" (TBS_GIS_OGR_Tools_Maptrim)</a></h1>
+<p><img src="./assets/Pasted_image_20260522213226.png" alt="" /></p>
+<p>Команда ожидает ввода настроек для анализа, которые представлены в отдельном модальном окне:</p>
+<p><img src="./assets/Pasted_image_20260522192750.png" alt="" /></p>
+<p>Режим подрезки - то, где будут <strong>удаляться</strong> объекты - за пределами контура или внутри него. В основном, команда будет использоваться для случая удаления объектов за пределами контура, например, чтобы оставить точки поверхности по материалам открытого рельефа в пределах условной полосы отвода линейного объекта.</p>
+<p>Действие с необработанными объектами. Так как в TBS GIS поддерживаются не все типы объектов, то можно выбрать - оставить ли их, или удалить с чертежа.</p>
+<p>Параметры анализа контура и объектов приведены для стандартных правил обработки векторной геометрии в ГИС. Для параметров приведен их перевод и оригинальное название в скобках. Схема каждого из условия приведена на рисунке ниже
+<img src="./assets/Pasted_image_20260522193208.png" alt="" />
+Можно выбрать все условия или сбросить выбор с помощью соответствующих кнопок. После окончания настроек нажмите на "Обрезать".</p>
+<p>Далее вам необходимо будет выбрать целевые контуры - это должен быть один или несколько замкнутых контуров (Полилиния, в свойствах которой Замкнуто = Да).</p>
+<p>Следующим будет выбор самих целевых объектов. Пример результата для настроек выше приведен на картинке далее.
+<img src="./assets/Pasted_image_20260522193640.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Пересчет-dwg-чертежей---команда-Перепроецирование-dwg-tbs_gis_ogr_dwg_reproject"><a class="header" href="#Пересчет-dwg-чертежей---команда-Перепроецирование-dwg-tbs_gis_ogr_dwg_reproject">Пересчет DWG чертежей - команда "Перепроецирование DWG" (TBS_GIS_OGR_DWG_Reproject)</a></h1>
+<p><img src="./assets/Pasted_image_20260522213211.png" alt="" /></p>
+<p>Настройки для команды задаются в модальном диалоговом окне:</p>
+<p><img src="./assets/Pasted_image_20260522193921.png" alt="" /></p>
+<p>Аналогично диалогам импорта геоданных, в данном диалоге необходимо задать как систему координат "входящих" DWG, так и систему координат, в которую будут преобразованы DWG. Система координат для данного чертежа здесь никак не используется.</p>
+<p>Выберите один или несколько DWG файлов. В левом нижнем окне отобразится структура выбранных файлов (только имена файлов).</p>
+<p>Выберите режим сохранения данных:</p>
+<ul>
+<li>Каждый DWG - Новый DWG -- рядом с исходным файлом будет создан новый DWG на основе шаблона по умолчанию с пересчитанными объектами и названием, равным оригинальному имени файла + суффикс <code>_converted_to_</code> и код целевой системы координат;</li>
+<li>Все DWG - Новый DWG -- в папке, где располагается первый из указанных файлов, будет создан новый DWG на основе шаблона по умолчанию с именем в виде Guid, в него будут добавляться все пересчитанные объекты из исходных чертежей;</li>
+<li>Каждый DWG - Текущий DWG -- все пересчитанные объекты будут копироваться в данный чертеж;</li>
+</ul>
+<p>Флаг "Игнорировать штриховки" позволяет пропускать штриховки, т.к. при чтении некоторых из них возможны ошибки, в связи с чем вся процедура может прерваться.</p>
+<p>По нажатию на кнопку "Начать обработку" запуститься процесс конвертации. Работа с программой будет не возможна до завершения работы функции.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Импорт-текстовых-данных"><a class="header" href="#Импорт-текстовых-данных">Импорт текстовых данных</a></h1>
+<p><img src="./assets/Pasted_image_20260522213157.png" alt="" /></p>
+<p>При вызове команды откроется диалог следующего вида.</p>
+<p><img src="./assets/Pasted_image_20260522202822.png" alt="" /></p>
+<p>Текстовый файл можно указать в диалоге выбора файлов "Вставить из текстового файла", либо из буфера обмена через соответствующую команду (в этом случае данные будут вставлены в новый временный текстовый файл и дальнейшая работа с данными будет строиться, как с обычным текстовым файлом).</p>
+<p>Диалог импорта текстовых файлов требует указать систему координат, в которой находятся точки из файла через <a href="./TBSGISDOC_3_1_0_CsManager.html">стандартный менеджер СК</a>.</p>
+<p>При смене разделителя текста, пользовательского разделителя, флагов пропуска данных, формата числа будет автоматически изменяться табличное представление данных в поле слева. Для экономии памяти и производительности будут отображаться только первые 10 точек, остальные будут пропускаться. Они будут обработаны уже на этапе импорта данных.</p>
+<p>Структура файла – это настройка, влияющая только на импорт данных (получение из колонок информации, где находятся координаты X, Y, Z). Если её не задать, либо задать не корректно, данные не будут вставлены.</p>
+<p>По нажатию на "Импорт" пересчитанные точки будут вставлены выбранным способом в "Режим импорта". Однострочный текст - это плановые координаты XY, а значение текста - отметка Z. Для вставки в виде блока, он должен быть выбран в списке блоков. Если блок не выбран, то данные вставятся в виде обычных точек. Ниже приведен пример импортированных точек в чертеж в виде набора текста.
+<img src="./assets/Pasted_image_20260522203707.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Связывание-текстов-по-условию-расположения---команда-Связать-2-текста-tbs_gis_ogr_tools_text2textlink"><a class="header" href="#Связывание-текстов-по-условию-расположения---команда-Связать-2-текста-tbs_gis_ogr_tools_text2textlink">Связывание текстов по условию расположения - команда "Связать 2 текста" (TBS_GIS_OGR_Tools_Text2TextLink)</a></h1>
+<p>Предназначена для связки двух текстовых объектов (в форме Однострочного и\или Многострочного текстов) в единый текстовый объект (Многострочный текст) по условию расположения вблизи данного. В реализации функции используется логика пространственной индексации (то есть для каждого объекта из первой группы ищется ближайший текстовый объект второй группы).</p>
+<p>Под группами понимается набор объектов на конкретном слое. Функция просит указать сперва первый набор объектов, потом другой набор объектов. Достаточно выбрать по одному объекту в каждом из случаев -- для двух разных слоев. Само собой, перед выполнением команды соединяемые объекты должны лежать на <strong>разных</strong> слоях.</p>
+<p>Функция позволяет соединять таким образом 2 части текста (вторую с первой). Если выбрать режим «Отметки высот», то текст будет преобразован в число из предположения, что первый набор объектов — это «целая часть числа», а второй набор объектов — десятичная часть числа. Подобные данные часто встречаются, например, на картах глубин:</p>
+<p>Помимо набора объектов функция запрашивает 3 числовых параметра в командной строке:</p>
+<ul>
+<li><strong>Радиус зоны исключения объектов</strong>: для дублирующихся и перекрывающихся объектов радиус зоны, за пределами которой дубли не будут искаться;</li>
+<li><strong>Радиус поиска объектов</strong>: какое максимальное расстояние для поиска объекта вокруг данного. Для исключения привязки ошибочных данных;</li>
+<li><strong>Режим работы с данными</strong>: «Отметки высот» или «Сложение строк». Во втором случае новый текст будет сложен из двух строк текстов. В первом случае текст = отметке (целая + дробная части).</li>
+</ul>
+<p>Результат работы функции: создание нового Многострочного текста в точке расположения первого объекта (из первой группы) со значением текста, полученного из анализа ближайшего объекта. Если расстояние до объекта превышало установленный <strong>Радиус поиска объектов</strong>, то конечный текст создан не будет. Если режим = «Отметки высот», то новый текст имеет отметку = вычисленному значению, помимо содержимого самого текста. Если отметка целая, то выведется с нулевой десятичной частью: «10.0».</p>
+<p>Создаваемые экземпляры текста имеют высоту = 1, и размещаются в текущем активном слое.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Работа-с-растровыми-данными"><a class="header" href="#Работа-с-растровыми-данными">Работа с растровыми данными</a></h1>
+<p>В данной группе представлены различные команды на импорт-экспорт растровых геоданных. Команды группы сосредоточены на панели "Растровые данные" ленты CAD:</p>
+<p><img src="./assets/Pasted_image_20260522203908.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Импорт-растровых-геоданных-1"><a class="header" href="#Импорт-растровых-геоданных-1">Импорт растровых геоданных</a></h1>
+<h2 id="Команда-Импорт-tbs_gis_gdal_import"><a class="header" href="#Команда-Импорт-tbs_gis_gdal_import">Команда "Импорт" (TBS_GIS_GDAL_Import)</a></h2>
+<p><img src="./assets/Pasted_image_20260522213120.png" alt="" /></p>
+<p>Настройки импорта задаются в <a href="./TBSGISDOC_3_2_0_GeoImport.html">диалоговом окне</a> для импорта растровых геоданных общего вида.</p>
+<p><img src="./assets/Pasted_image_20260522204402.png" alt="" /></p>
+<p>По нажатию на кнопку "Импорт" выбранный растр будет сперва перепроецирован в целевую СК, затем сохранен в GTiff, и в таком виде присоединен в чертеж в виде внешней ссылки (файл растра будет в Temp-папке приложения TBS-GIS, если вы хотите использовать его далее, то переместите из той папки в другое место и далее в Диспетчере внешних ссылок укажите новый путь, так как параметры вставки растра также рассчитываются).</p>
+<p>Пример вставки пересчитанного растра (спутниковое изображение), на фоне - контуры зданий из OSM.</p>
+<p><img src="./assets/Pasted_image_20260522205311.png" alt="" /></p>
+<p>Если у растрового файла имеется файл привязки, одноименный с растром, то он также автоматически подхватится при импорте растровых геоданных в модель (только потребуется указать СК, так как она обычно в файлы не записывается -- файлы JPEG, PNG и пр.).</p>
+<h2 id="Команда-Создать-рельеф-tbs_gis_gdal_createelevation"><a class="header" href="#Команда-Создать-рельеф-tbs_gis_gdal_createelevation">Команда "Создать рельеф" (TBS_GIS_GDAL_CreateElevation)</a></h2>
+<p><img src="./assets/Pasted_image_20260522213136.png" alt="" /></p>
+<p>Существует под-тип растровых геоданных, содержащих информацию о точках рельефа. Некоторых из них называют DEM-файлами. Отличительной особенностью растров подобного типа является единственный канал с пикселями, значениями которых выступают числа float (высота Z), обычными программами для просмотра картинок они могут не открываться. TBS GIS может преобразовать пиксели растра в регулярную сеть точек и импортировать их в таковом виде в чертеж с пересчетом координат. При необходимости по точкам можно будет создать триангуляцию, например, командой <code>TBS_GIS_OGR_Tools_DelaunayCreate</code>.</p>
+<p>Импорт растровых геоданных с целью создания рельефа в настоящем приложении связан с задачей получения открытого рельефа (команда <code>TBS_GIS_OpenData_LoadDEM</code>), после загрузки и обрезки набора файлов она вернет как раз файл в этом диалоге. Тем не менее, вы можете импортировать через данную команду и цельные DEM-файлы на квадратный градус, но их желательно упрощать - задавая параметр обработки "Упростить рельеф" и значение упрощения, например 50 (раз). В зависимости от анализируемой территории. В примере ниже используется HGT-файл типа srtm из состава файлов открытой модели рельефа ASTER GDEM.</p>
+<p><img src="./assets/Pasted_image_20260522210810.png" alt="" /></p>
+<p>Обрабатываются только пиксели растра, не содержащие т.н. NoData (где у растра нет данных для данной точки). Это позволяет снизить нагрузку на движок САПР при вставке точек в модель.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Экспорт-триангуляции-в-растр---команда-Экспорт-рельефа-tbs_gis_gdal_exportelevation"><a class="header" href="#Экспорт-триангуляции-в-растр---команда-Экспорт-рельефа-tbs_gis_gdal_exportelevation">Экспорт триангуляции в растр - команда "Экспорт рельефа" (TBS_GIS_GDAL_ExportElevation)</a></h1>
+<p><img src="./assets/Pasted_image_20260522213107.png" alt="" /></p>
+<p>Позволяет преобразовать триангуляцию (набор 3d-граней) в растр аналогично моделям рельефа (1 канал с отметками высоты в пикселях).</p>
+<p>Настройки задаются через отдельное окно:</p>
+<p><img src="./assets/Pasted_image_20260522211520.png" alt="" /></p>
+<p>В окне необходимо указать целевую систему координат через <a href="./TBSGISDOC_3_1_0_CsManager.html">стандартный менеджер СК</a> (Указать целевую систему координат), также шаг растеризации в метрах. По умолчанию, квадраты по 20 метров. Чем реже шаг, тем дольше расчет. Выбирайте шаг соизмеримо с размеров анализируемых граней. Процедура самописная, и потому на больших объемах крайне медленная.</p>
+<p>Необходимо указать путь, по которому будет сохранен результирующий растр - "Указать место сохранения файла".</p>
+<p>После всех настрое нажмите на "Экспортировать". Далее в модели необходимо выбрать набор 3D-граней, на основе информации которых будут рассчитаны вершины в регулярной сети точек (а на основе этой информации и сформирован растр). После этого растр будет пересчитан в целевую систему координат и сохранен в GTiff по выбранному пользователем пути.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Работа-с-геомаркерами"><a class="header" href="#Работа-с-геомаркерами">Работа с геомаркерами</a></h1>
+<p>Геомаркеры - это блоки с атрибутами, содержащими информацию, о координатах точки вставки блока в целевой системе координат с выбранными настройками отображения.</p>
+<p>Определение блока геомаркера хранится в файле <code>Resources\auxDWG\TBS_GIS_GeoMarker.dwg</code> во вложенной папке папки приложения (по умолчанию <code>C:\Program Files\TBS\TBS GIS</code>). Если по данному пути файл не был найден, то функции работать не будут. Вы можете отредактировать определение блока, если желаете, чтобы его объекты были на других слоях, главное, не удаляйте и не переименовывайте имеющиеся атрибуты блока "TBS_GIS_GeoMarker".</p>
+<h2 id="Команда-Геомаркеры-настройка-tbs_gis_geomarkers"><a class="header" href="#Команда-Геомаркеры-настройка-tbs_gis_geomarkers">Команда "Геомаркеры настройка" (TBS_GIS_Geomarkers)</a></h2>
+<p><img src="./assets/Pasted_image_20260522213049.png" alt="" /></p>
+<p>Запускается модальное диалоговое окно, с настройками, которые применяются для вновь создаваемых геомаркеров.</p>
+<p><img src="./assets/Pasted_image_20260522214231.png" alt="" /></p>
+<p>В настройках задается целевая система координат (ту, в которую пересчитываются плановые координаты XY точек вставки блоков с отображением результатов в полях "X_LONG_COORD", "Y_LAT_COORD" соответственно).</p>
+<p>Возможно задать отображаемую точность цифр. В случае представления результата в формате числа с дробной частью хватит 3 знаков, если целевая СК обычная типа "projected"; в случае пересчета в геодезическую СК точность надо указывать от 6 до 8 знаков.
+Если формат отображения указывается как ГГ.ММ.СС (градусы, минуты, секунды), то количество знаков можно оставить 0..2. Этот формат отображения целесообразен только для геодезических СК, для обычных "projected" он не имеет смысла.</p>
+<p>Удалять исходные объекты - флаг, если true, то при вызове функций <code>TBS_GIS_Geomarkers_ByPoints</code> или <code>TBS_GIS_Geomarkers_ByBlocks</code> исходные объекты будут удалены.</p>
+<p>После "Применения настроек" они будут использоваться для всех новых создаваемых маркеров, а также к старым при вызове команды <code>TBS_GIS_Geomarkers_Update</code></p>
+<h2 id="Команда-Обновить-геомаркеры-tbs_gis_geomarkers_update"><a class="header" href="#Команда-Обновить-геомаркеры-tbs_gis_geomarkers_update">Команда "Обновить геомаркеры" (TBS_GIS_Geomarkers_Update)</a></h2>
+<p><img src="assets/image-2026-05-22-1.png" alt="" /></p>
+<p>Пересчитывает координаты для всех геомаркеров в чертеже согласно указанным настройкам в окне по команде <code>TBS_GIS_Geomarkers</code>. То есть если у вас были геомаркеры с разными СК, они будут пересчитаны для одной целевой, установленной в настройках выше.</p>
+<h2 id="Команда-Геомаркер-вручную-tbs_gis_geomarkers_manual"><a class="header" href="#Команда-Геомаркер-вручную-tbs_gis_geomarkers_manual">Команда "Геомаркер вручную" (TBS_GIS_Geomarkers_Manual)</a></h2>
+<p><img src="assets/image-2026-05-22.png" alt="" /></p>
+<p>Предлагает Пользователю указать точку вставки геомаркера. В ней будет размещен геомаркер. Команда будет рекурсивно вызываться до тех пор, пока пользователь не прервет ввод точек.</p>
+<p><img src="./assets/Pasted_image_20260522215247.png" alt="" /></p>
+<h2 id="Команда-Геомаркер-по-точкам-tbs_gis_geomarkers_bypoints"><a class="header" href="#Команда-Геомаркер-по-точкам-tbs_gis_geomarkers_bypoints">Команда "Геомаркер по точкам" (TBS_GIS_Geomarkers_ByPoints)</a></h2>
+<p><img src="assets/image-2026-05-22-2.png" alt="" /></p>
+<p>Пользователь выбирает группу точек, в месте каждой из них вставляется геомаркер с пересчитанными координатами.</p>
+<h2 id="Команда-Геомаркер-по-блокам-tbs_gis_geomarkers_byblocks"><a class="header" href="#Команда-Геомаркер-по-блокам-tbs_gis_geomarkers_byblocks">Команда "Геомаркер по блокам" (TBS_GIS_Geomarkers_ByBlocks)</a></h2>
+<p><img src="assets/image-2026-05-22-3.png" alt="" /></p>
+<p>Пользователь выбирает группу вхождений блоков, в месте каждого из них вставляется геомаркер с пересчитанными координатами.</p>
+<h2 id="Команда-Геомаркер-по-координатам-tbs_gis_geomarkers_placebydata"><a class="header" href="#Команда-Геомаркер-по-координатам-tbs_gis_geomarkers_placebydata">Команда "Геомаркер по координатам" (TBS_GIS_Geomarkers_PlaceByData)</a></h2>
+<p><img src="assets/image-2026-05-22-4.png" alt="" /></p>
+<p>Пользователь вводит в командной строке значение широты целевого места, затем значение долготы. В указанной точке вставляется геомаркер. Фактически, обратная процедура размещения маркера вручную. Координаты вводятся с разделителем дробной части "ТОЧКА", в системе WGS 84. Значения по умолчанию - Александровская колонна в СПб.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Работа-с-открытыми-геоданными"><a class="header" href="#Работа-с-открытыми-геоданными">Работа с открытыми геоданными</a></h1>
+<p>Команды требуют наличия подключения к сети Интернет. Импорт OSM скорее всего не будет работать в государственных учреждениях. При вызове команды от Пользователя необходимо указать замкнутый контур, в пределах которого необходимо загрузить данные.</p>
+<p>Если чертежу не задана система координат, то обработка не начнется, так как необходим пересчет координат в WGS 84.</p>
+<h2 id="Команда-Загрузить-osm-tbs_gis_opendata_loadosm"><a class="header" href="#Команда-Загрузить-osm-tbs_gis_opendata_loadosm">Команда "Загрузить OSM" (TBS_GIS_OpenData_LoadOSM)</a></h2>
+<p><img src="assets/image-2026-05-22-5.png" alt="" /></p>
+<p>Для крайних точек контура рассчитывается ограничивающая рамка, далее с помощью стандартной формы загрузки <code>https://api.openstreetmap.org/api/0.6/map?bbox=min_long,min_lat,max_long,max_lat</code> производится скачивание OSM-файла с сервера. Если в запрашиваемой зоне более 50 000 объектов, то обработка будет не возможна и сервер вернет ошибку.</p>
+<p>Загруженный OSM файл далее будет передан в <a href="./TBSGISDOC_4_2_1_cadPlugin_OGR_import.html">диалог импорта векторных геоданных</a> и дальнейший импорт будет идти согласно его правилам.
+<img src="./assets/Pasted_image_20260522220454.png" alt="" /></p>
+<h2 id="Команда-Загрузить-open-elevation-tbs_gis_opendata_loaddem"><a class="header" href="#Команда-Загрузить-open-elevation-tbs_gis_opendata_loaddem">Команда "Загрузить Open Elevation" (TBS_GIS_OpenData_LoadDEM)</a></h2>
+<p><img src="assets/image-2026-05-22-6.png" alt="" /></p>
+<p>После выбора контура у Пользователя запрашивается, какой источник данных о моделях рельефа выбрать - ASTER GDEM или FABDEM 1.2:</p>
+<p><img src="./assets/Pasted_image_20260522220621.png" alt="" /></p>
+<p>FABDEM является более точным (в 3 раза) и более чистым.</p>
+<p><strong>Дисклеймер</strong>: запрещается использование FABDEM в коммерческих целях.</p>
+<p>После выбора типа рельефа, если в папке приложения <code>C:\TBS\TBS_GIS_Data\OpenData</code> отсутствуют тайлы для заданного квадратного градуса местности, будет произведена попытка их загрузки из веб-хранилища TBS на Яндекс-диске. Если загрузка была успешной, произойдет склеивание разных растров в один файл и обрезка его по маске контура.</p>
+<p><strong>Примечание</strong>: дополнительно к указанному контуру, он будет увеличен на 0.005 градуса в стороны (примерно на 400 метров)..</p>
+<p>Результат обрезки будет сохранен в виде растра со слоем рельефа и передан в <a href="./TBSGISDOC_4_3_1_cadPlugin_GDAL_import.html">диалог импорта растровых геоданных-рельефа</a>, дальнейший импорт в модель с помощью диалога функции <code>TBS_GIS_GDAL_CreateElevation</code>. Растр будет обрезан по контуру, который был задан при вызове функции загрузки открытых данных.</p>
+<p><img src="./assets/Pasted_image_20260522221217.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Работа-с-атрибутикой"><a class="header" href="#Работа-с-атрибутикой">Работа с атрибутикой</a></h1>
+<p>У векторных геоданных могут быть атрибуты. В приложении TBS GIS они сохраняются в XData к объектам DWG и доступны для просмотра через специальную палитру-обозреватель "TBS_GIS_Attrs_ShowPallete.</p>
+<h2 id="Команда-Показать-атрибуты-tbs_gis_attrs_showpallete"><a class="header" href="#Команда-Показать-атрибуты-tbs_gis_attrs_showpallete">Команда "Показать атрибуты" (TBS_GIS_Attrs_ShowPallete)</a></h2>
+<p><img src="./assets/Pasted_image_20260522223735.png" alt="" /></p>
+<p>Представляет собой отдельную палитру с единственным элементом типа "список", в котором отображаются оригинальные свойства из геоданных, в данном случае (см. картинку ниже) для атрибутов OpenStreetMap:
+<img src="./assets/Pasted_image_20260522223853.png" alt="" /></p>
+<p>Если у объекта нет свойств, то панель будет пустой.</p>
+<h2 id="Команда-Поднять-на-отметку-атрибута-tbs_gis_attrs_uptoz"><a class="header" href="#Команда-Поднять-на-отметку-атрибута-tbs_gis_attrs_uptoz">Команда "Поднять на отметку атрибута" (TBS_GIS_Attrs_UpToZ)</a></h2>
+<p><img src="assets/image-2026-05-22-7.png" alt="" /></p>
+<p>Для выбранных объектов чертежа считывает набор атрибутов, формирует список с уникальными именами, далее пользователю предлагается выбрать одно из имен атрибутов. Если значение атрибута удается преобразовать в число, то объекту задается уровень, соответствующий значению атрибута.</p>
+<h2 id="Команда-Переместить-на-слой-атрибута-tbs_gis_attrs_settolayer"><a class="header" href="#Команда-Переместить-на-слой-атрибута-tbs_gis_attrs_settolayer">Команда "Переместить на слой атрибута" (TBS_GIS_Attrs_SetToLayer)</a></h2>
+<p><img src="assets/image-2026-05-22-8.png" alt="" /></p>
+<p>Для выбранных объектов чертежа считывает набор атрибутов, формирует список с уникальными именами, далее пользователю предлагается выбрать одно из имен атрибутов. Если значение атрибута не пустая строка, то создается слой с таким названием, и на него перемещается объект.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Справочные-команды"><a class="header" href="#Справочные-команды">Справочные команды</a></h1>
+<p>Не требуют лицензии на приложение.</p>
+<h2 id="Команда-Справка-tbs_gis_help"><a class="header" href="#Команда-Справка-tbs_gis_help">Команда "Справка" (TBS_GIS_Help)</a></h2>
+<p><img src="assets/image-2026-05-22-9.png" alt="" /></p>
+<p>Открывает настоящую справку в виде локального PDF-файла из папки приложения в приложении для просмотра PDF по умолчанию (как минимум, в браузере). Если файл не существует, то команда завершится.</p>
+<h2 id="Команда-Наш-сайт-tbs_gis_website"><a class="header" href="#Команда-Наш-сайт-tbs_gis_website">Команда "Наш сайт" (TBS_GIS_Website)</a></h2>
+<p><img src="assets/image-2026-05-22-10.png" alt="" /></p>
+<p>Осуществляет переход к интернет-сайту TBS "https://tbs-soft.ru/", он откроется в браузере по умолчанию.</p>
+<h2 id="Команда-Наш-youtube---канал-tbs_gis_youtubechannel"><a class="header" href="#Команда-Наш-youtube---канал-tbs_gis_youtubechannel">Команда "Наш YouTube - канал" (TBS_GIS_YouTubeChannel)</a></h2>
+<p><img src="assets/image-2026-05-22-11.png" alt="" /></p>
+<p>Осуществляет переход к YouTube-каналу TBS "https://www.youtube.com/@TBSsoft" , он откроется в браузере по умолчанию.</p>
+<h2 id="Команда-О-версии-плагина-tbs_gis_aboutversion"><a class="header" href="#Команда-О-версии-плагина-tbs_gis_aboutversion">Команда "О версии плагина" (TBS_GIS_AboutVersion)</a></h2>
+<p><img src="assets/image-2026-05-22-12.png" alt="" /></p>
+<p>Выводится модальное диалоговое окно с информацией о версии плагина:
+<img src="./assets/Pasted_image_20260522225000.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Обновления"><a class="header" href="#Обновления">Обновления</a></h1>
+<p>Здесь перечислены все обновления плагина начиная с первых версий по текущую (сверху вниз)</p>
+<h3 id="Версия-10"><a class="header" href="#Версия-10">Версия 1.0</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>команды <strong>tbs_gis_initialize</strong>, <strong>tbs_gis_csassign</strong> <strong>tbs_gis_mapimport</strong>, <strong>tbs_gis_import_open_data</strong>;</li>
+<li><strong>tbs_gis_csassign</strong>: менеджер назначения систем координат;</li>
+<li><strong>tbs_gis_initialize</strong>: метод, исполняемым первым при начале работы Пользователем. Пока он не выполнен, прочие методы не будут выполняться;</li>
+<li><strong>tbs_gis_mapimport</strong>: форма импорта векторных данных;</li>
+<li><strong>tbs_gis_import_open_data</strong> форма загрузки внешних открытых данных (типа OSM) с последующим импортом -– <strong>tbs_gis_mapimport</strong></li>
+</ul>
+<h3 id="Версия-11"><a class="header" href="#Версия-11">Версия 1.1</a></h3>
+<p>Ввод поддержки импорта растров
+<strong>Добавлено</strong></p>
+<ul>
+<li>команда tbs_gis_mapiimport - для импорта растровых данных (пока только geotiff и png (требует тестирования);</li>
+</ul>
+<h3 id="Версия-v12-126"><a class="header" href="#Версия-v12-126">Версия v1.2 (1.2.6)</a></h3>
+<p>Ввод поддержки импорта открытого рельефа (ASTER GDEM); импорт скачиваемых открытых данных в выделенную папку на компьютере.
+<strong>Добавлено</strong></p>
+<ul>
+<li>возможность импорта DEM-файлов на интересуемую область, в рамках команды tbs_gis_mapiimport;</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>все файлы скачиваемые в рамках команды tbs_gis_mapiimport загружаются в папку %appdata%\TBS_GIS_Data;</li>
+<li>логика захвата экстента полилинии для подготовки открытых ресурсов.</li>
+<li>логика считывания с растра высот (int вместо byte, т.к. некоторые растры содержали карту высот выше 0...255м,</li>
+<li>для формы импорта векторных данных добавлена возможность забирать "все файлы", невзирая на их расширения (актуально для пока невведенных в поддержку фильтров для поддерживаемых OSGeo форматов и спецификаций);</li>
+<li>для всех функций введен автоматический запуск внутренней процедуры "инициализации", если таковая для данного чертежа отсутствует; при смене рабочего документа НУЖНО запускать её вручную,</li>
+<li>вспомогательный для DEM-файлов файл dem_def.xml ищется теперь в папке Resources распакованной версии релиза, не в папке NanoCAD;</li>
+<li>для формы импорта ГИС-данных добавлена инициализация внутреннего списка paths_to_files, из-за которого могла появляться ошибка;</li>
+<li>в число классов-обёрток над геометрией OSGeo добавлена поддержка типов с окончанием на 25D, в частности для GeoJSON;</li>
+<li>добавление вспомогательного файла osmconf.ini для работы драйвера с OSM. В рамках процедуры initialize() происходит также добавление в число ВНУТРЕННИХ ПУТЕЙ gdal пути до этого файла;</li>
+<li>логика чтения растра для создания полигональной сети, теперь Z соответствуют действительности (раннее было зеркальное отражение).</li>
+<li>добавлена логика разделения больших растровых данных на сетку полигональных сетей;</li>
+</ul>
+<h3 id="Версия-13"><a class="header" href="#Версия-13">Версия 1.3</a></h3>
+<p>Предыдущие исправления и глобальная правка логики пересчета векторных данных.</p>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>механика регистрации в качестве переменной среды пути к вспомогательным файлам для gdal;</li>
+<li>база данных proj.db теперь включена в состав плагина и сама инсталлируется в папку proj в папке %localappdata%;</li>
+<li>прорисовка полигонов как замкнутых полилиний;</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>логика пересчета координат файлов.</li>
+<li>команда для вставки растров переименована в tbs_gis_rasterimport, для импорта растров с файлом привязки добавлена команда tbs_gis_rasterimport_with_proj_files;</li>
+<li>процедура initialize разделена на Глобальную (при старте плагина) и Локальную (для документа), в рамках Глобальной происходит запрос на получение данных по СК на основе ini-файла с данными об изменениях БД;</li>
+<li>заблокировано отображение атрибутики по умолчанию для импорта векторных файлов;</li>
+<li>(для свойств) свойства отображаются применимо к классам объектам моделей;</li>
+</ul>
+<h3 id="Версия-14"><a class="header" href="#Версия-14">Версия 1.4</a></h3>
+<p>Предыдущие исправления, изменение механики работы с геометрией (внутри) и начальная поддержка импорта xml Росреестра
+<strong>Добавлено</strong></p>
+<ul>
+<li>команда tbs_gis_rosreestr_import для импорта xml-файлов Росреестра;</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>внутренние процедуры преобразования геометрии из ГИС-файлов;</li>
+<li>перестроение логики обработки под будущий экспорт ГИС-данных;</li>
+</ul>
+<h3 id="Версия-15"><a class="header" href="#Версия-15">Версия 1.5</a></h3>
+<p>Миграция на .NET 6.0 для платформы nanoCAD 23.0.</p>
+<h3 id="Версия-363"><a class="header" href="#Версия-363">Версия 3.6.3</a></h3>
+<p>Первый регулярный релиз TBS GIS с инсталлятором;</p>
+<h3 id="Версия-364"><a class="header" href="#Версия-364">Версия 3.6.4</a></h3>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>добавлена блокировка кнопок на запуск окон из главной формы, если не было выбрано целевое приложение nanoCAD;</li>
+</ul>
+<h3 id="Версия-365"><a class="header" href="#Версия-365">Версия 3.6.5</a></h3>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>при импорте векторных файлов в случае отсутствия СК модели, СК файла или обоих не было результата на функцию "Обратить координаты". Теперь это работает;</li>
+<li>в Справку добавлено действие по установке регионального параметра "разделитель дробной части чисел" на точку (так как библиотеки OSGeo работают только с таким параметром);</li>
+</ul>
+<h3 id="Версия-366-31072023"><a class="header" href="#Версия-366-31072023">Версия 3.6.6 (31.07.2023)</a></h3>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>В число поддерживаемых векторных файлов добавлена поддержка XML файлов росреестра;</li>
+<li>В диспетчер импорта векторных файлов добавлена экспериментальная опция "Объединять коллекции объектов в Группы";</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>новые слои, создаваемые для импортируемых векторных файлов теперь имеют префикс "TBS_GIS_";</li>
+<li>в число новых файлов, перемещаемых в C:\ProgramData\TBS\TBS_GIS_Data добавлена папка rosreestr, содержащая общие схемы для XML-росреестра (нужно для корректной работы обработчика этих файлов);</li>
+</ul>
+<h3 id="Версия-367-10082023"><a class="header" href="#Версия-367-10082023">Версия 3.6.7 (10.08.2023)</a></h3>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>База координат proj.db. Экспериментально добавлена система координат г. Москвы (МГГТ), требует тестирование корректность пересчета. небольшие сдвиги (в пределах до 5м будут наверное);</li>
+<li>Изменен метод запроса WKT кода у системы координат (если она была импортирована в proj.db в виде текстового определения (wkt-кода), то вернется этот код;</li>
+</ul>
+<h3 id="Версия-368-22082023"><a class="header" href="#Версия-368-22082023">Версия 3.6.8 (22.08.2023)</a></h3>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>поддержка других векторных и растровых форматов на импорт (в частности, KMZ, ECW и другие);</li>
+</ul>
+<h3 id="Версия-369-13092023"><a class="header" href="#Версия-369-13092023">Версия 3.6.9 (13.09.2023)</a></h3>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>теперь открытый рельеф импортируется с авто-прореживанием на большую зону для оптимизации его размера. Максимальная сетка ограничена величиной 250х250 ячеек.</li>
+</ul>
+<h3 id="Версия-375-10102023"><a class="header" href="#Версия-375-10102023">Версия 3.7.5 (10.10.2023)</a></h3>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>переделана механика импорта атрибутики, теперь это реализуется в новой палитре NRX, которая запускается по команде _TBS_GIS_ShowAttributesQPallete;</li>
+</ul>
+<h3 id="Версия-376-10102023"><a class="header" href="#Версия-376-10102023">Версия 3.7.6 (10.10.2023)</a></h3>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>переименована палитра в NRX для отображения атрибутики на TBS GIS Attributes Pallete;</li>
+</ul>
+<h3 id="Версия-377-15112023"><a class="header" href="#Версия-377-15112023">Версия 3.7.7 (15.11.2023)</a></h3>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>для импорта растровых данных добавлен тип файла SRTMHGT (*.hgt), он же файлы для рельефа;</li>
+<li>в импортере XML-файлов росреестра исправлена ошибка, приводящая к вылету надстройки, при неверном чтении XML-файла;</li>
+</ul>
+<h3 id="Версия-400-26122023"><a class="header" href="#Версия-400-26122023">Версия 4.0.0 (26.12.2023)</a></h3>
+<p>Глобальное обновление всей надстройки: переход на ленточный интерфейс и внутреннее связывание с nanoCAD, появление новых функций:</p>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>Новые команды: TBS_GIS_ConfigManage, TBS_GIS_ConfigUpdate, TBS_GIS_OGR_Import_MGGT, TBS_GIS_OGR_Tools_Buffers, TBS_GIS_OGR_Tools_MPolygon_GetBorders, TBS_GIS_OGR_Export, TBS_GIS_GDAL_ExportElevation, TBS_GIS_Attrs_ImportFromFile, TBS_GIS_Attrs_ExportToFile</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>реализация импортера векторных и растровых данных;</li>
+<li>процедура регистрации ресурсов и настроек плагина;</li>
+<li>внутренняя логика работы с данными (значительно повысилась скорость работы);</li>
+</ul>
+<h3 id="Версия-401-28122023"><a class="header" href="#Версия-401-28122023">Версия 4.0.1 (28.12.2023)</a></h3>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>Новые функции TBS_GIS_OGR_Tools_Centroid, TBS_GIS_OGR_Tools_MPolygonToHatch, TBS_GIS_OGR_Tools_HatchToMPolygon, TBS_GIS_Attrs_CodificatorRun;</li>
+<li>Обработка штриховок (чтение/создание), отрезков (чтение);</li>
+<li>Передача атрибутов объекту при его удалении и замене на новый (МПолигон – Штриховка и наоборот);</li>
+<li>автоматическое применение к файлам МГГТ системы координат г. Москвы и запуск декодера кодов XML-файла;</li>
+<li>Возможность открыть локальную справку по продукту;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>название для сохранения растрового снимка в команде формирования растра по рельефу;</li>
+</ul>
+<h3 id="Версия-402-30122023"><a class="header" href="#Версия-402-30122023">Версия 4.0.2 (30.12.2023)</a></h3>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>Новые команды TBS_GIS_PointCloud_Reproject, TBS_GIS_PointCloud_Rasterize для новой панели «Облака точек»;</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>Изменения в интерфейсе: группировка некоторых команд, изменение описаний команд;</li>
+</ul>
+<h3 id="Версия-403-15012024"><a class="header" href="#Версия-403-15012024">Версия 4.0.3 (15.01.2024)</a></h3>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>Новая команда «TBS_GIS_OGR_Tools_DelaunayCreate»;</li>
+<li>Новые команды по работе с библиотеками СК «TBS_GIS_CS_WKT2_Import», «TBS_GIS_CS_ImportFromMap3D», «TBS_GIS_CS_CreateNewFromParams», «TBS_GIS_CS_CreateNewFromWKT», «TBS_GIS_CS_UpdateDB»;</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>Изменения в интерфейсе: панель «Оформление» сменила название на «Геомаркеры». На панель «Инфо» добавлены 2 нопки ведущие на сайт TBS и YouTune-канал TBS, опция импорта векторных данных выделена в отдельную кнопку</li>
+<li>Линейные объекты в рамках процедуры импорт векторных данных теперь вставляются в виде 3D-полилинии;</li>
+<li>Реализована поддержка импорта поверхности (OGR-тип PolyhedralSurface);</li>
+<li>В экспортере векторных файлов отредактирована логика выборки объектов по типам;</li>
+<li>Введена поддержка чтения 3D-линий чертежа (для экспорта и геометрических преобразований), для плоский полилиний координата Z теперь равно Уровню полилинии (ранее была = 0);</li>
+<li>После процедуры импорта векторных данных, создания триангуляции и импорта растров теперь происходит применение команды РЕГЕН (нужно для отрисовки поверхностей и полигонов);</li>
+<li>В форме импорта векторных данных отключена возможность создавать Группы для наборов объектов (нерабочая функция). Группировка может происходить по значениям атрибутов (инструментарий позже появится);</li>
+<li>Элементы интерфейса во всех формах изменены для удобства восприятия на экранах с масштабом 125% (ранее некоторые подписи закрывались другими элементами интерфейса;</li>
+<li>В форме импорта растровых данных (создание рельефа) синхронизировано изменение ползунка и поля ввода точного значения;</li>
+<li>Для импортера векторных данных (как стандартного, так и Росреестра\МГГТ) введено исключение: если объект не имеет геометрии, то он не будет импортирован и доступен как-либо из-под документа;</li>
+<li>Для импорта МГГТ GML добавлены профили кодификатора для схем по геологии и экологии в тестовом режиме;</li>
+<li>Команда «TBS_GIS_OGR_Tools_MPolygon_GetBorders» переименована в «TBS_GIS_OGR_Tools_Plg2Borders»;</li>
+<li>Исправлен баг, при котором при наличии в библиотеках СК одноименных систем координат не происходили процессы трансформации координат;</li>
+</ul>
+<h3 id="Версия-404-23012024"><a class="header" href="#Версия-404-23012024">Версия 4.0.4 (23.01.2024)</a></h3>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>Импорт HGT-файлов исправлен;</li>
+<li>Теперь если оригинальный файл имел имя на латинице, оно будет сохранено при перемещении во временный каталог TBS GIS (важно например для корректного импорта HGT-файлов);</li>
+<li>В кодификатор атрибутов добавлены схемы по геологии и экологии;</li>
+</ul>
+<h3 id="Версии-404-406"><a class="header" href="#Версии-404-406">Версии 4.0.4-4.0.6</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Кастомизация пользовательского интерфейса (тестирование новых иконок команд на ленте);</li>
+</ul>
+<h3 id="Версия-407-19022024"><a class="header" href="#Версия-407-19022024">Версия 4.0.7 (19.02.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Команда «TBS_GIS_CS_CreateNewFromParams_Batch»: пакетное создание определений СК по численным параметрам;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Полностью обновлена база данных СК proj.db идущая в поставке с приложением TBS GIS (для русских МСК сформирована новая категория MSKRU), также импортированы определения СК для республики Беларусь (из числа пакета адаптации для Civil 3D) в категорию MSKBY;</li>
+<li>Команды, открывающие справку и ресурсы TBS обновлены: теперь при их нажатии не выпадает ошибка;</li>
+<li>Растеризация облака точек: устранена ошибка обработки некоторых значений с неверным цветовым кодом RGB (ранее на этом моменте процедура вылетала);</li>
+<li>Для процедур растеризации и пересчета облака точек добавлен вывод диалогового окна в конце процедуры, информирующее о завершении процесса. Основное окно после этого будет закрыто;</li>
+<li>Переделана реализация пересчета координат в импортере векторных данных, пересчете точек в разных командах, включая геомаркеры. Новая реализация не должна давать странные результаты, как раннее было замечено в геомаркерах;</li>
+<li>Фильтр по полям систем координат (имя, описание, код) в Менеджере СК теперь регистро-независимый;</li>
+<li>Из перечня поддерживаемых растровых форматов для импорта удален SID (MrSID), так как с версии плагина 4.0.0 он перестал поддерживаемым;</li>
+<li>Исправлен импорт файлов XML Росреестра, раннее приводивший к ошибке;</li>
+<li>Для систем координат в Менеджере СК теперь отображаются описания, как они записаны в исходной базе данных proj.db (для облегчения ориентации по именам на латинице);</li>
+<li>Команды для работы с объектами чертежа (создание триангуляции, границ МПолигонов и штриховок, преобразование между штриховкой и МПолигоном (и обратно), буферы, центроиды теперь учитывают ранний пользовательский выбор объектов;</li>
+<li>Внесено исправление в импорт растров с файлом привязки: теперь под обработку попадают вспомогательные файлы с 6 числами;</li>
+</ul>
+<h3 id="Версия-408-21022024"><a class="header" href="#Версия-408-21022024">Версия 4.0.8 (21.02.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Новая команда «TBS_GIS_OGR_Tools_Text2TextLink»: связывание двух текстовых объектов по условию ближайшего расположения;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Для экспорта векторных файлов не устанавливался выбранный профиль экспорта геометрии. Исправлено;</li>
+<li>Для экспорта векторных файлов в формате «ESRI Shapefile» установлено исключение на длину слоя больше 10 символов (по спецификации), при превышении лимита название слоя сбрасывается до «layer», а также емкость поля атрибута для них устанавливается в 254 знака;</li>
+<li>Для функций построения буферов, преобразования между МПолигоном и штриховкой (и обратно), создания центроида, создания триангуляции добавлена процедура ВСЕРЕГЕН;</li>
+<li>В палитре атрибутов теперь продолжает отображаться информация по объекту, который был раннее выбран и выбор сброшен;</li>
+<li>При импорте текстовых файлов пересчитанный файл сохранялся без разделения на абзацы. Исправлено;</li>
+</ul>
+<h3 id="Версия-409-26022024"><a class="header" href="#Версия-409-26022024">Версия 4.0.9 (26.02.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Новые команды по построения оболочек: выпуклой оболочки TBS_GIS_OGR_Tools_ConvexHull и вогнутой оболочки TBS_GIS_OGR_Tools_ConcaveHull;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>В процедуру инициализации приложения (TBS_GIS_Functions.dll) внесено исключение: при обнаружении среди автозагруженных библиотек модуля TBS_GIS_Kernel.dll разрешить использование приложение (наблюдается при частично выгруженном Топоплане). Также в лог записывается информация о загруженных в nanoCAD других библиотеках;</li>
+<li>В процедуру инициализации приложения (TBS_GIS_Kernel.dll) вкнесено изменение: убрана регистрация приложения как модуля NRX. На некоторых ПК это порождало ошибки «NRX NOT_IMPLEMENTED» и nanoCAD аварийно закрывался;</li>
+<li>Функциональность работы с атрибутами выведена в новую библиотеку «TBS_GIS_PsetsManager.dll». На работоспособности остальных функций это сказаться не должно, но если будут наблюдаться проблемы — сообщайте нам;</li>
+<li>Для процедур создания триангуляции Делоне, Центроида, Оболочек добавлена проверка на корректную геометрию, чтобы функции не выбрасывали ошибок;</li>
+<li>При обновлении геомаркеров координаты в них теперь пересчитываются для той системы координат, которая стоит у них в атрибуте “CS_NAME_TARGET”;</li>
+</ul>
+<h3 id="Версия-410-27022024"><a class="header" href="#Версия-410-27022024">Версия 4.1.0 (27.02.2024)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Приложение теперь устанавливает ресурсы в корень диска C (папка C:\TBS\TBS_GIS_Data). Это сделано для возможности работы приложения на ПК с ограниченным доступом в каталог Program Data. Ранние настройки из файла TBS_GIS_Configs.xml надо будет перенести вручную;</li>
+<li>Исправлена механика пересчета координат (вставка векторных геоданных, простановка геомаркеров, импорт OSM и пр), устранен некорректный пересчет (из-за неверного понимания ориентации определений СК);</li>
+<li>Для импорта текстовых файлах установлена СК по умолчанию WGS84 (при необходимости можно сменить);</li>
+<li>Исправлен блок геомаркера «TBS_GIS_Geomarker». Раннее он отображал неверную информацию, теперь X = долготе, а X = широте. Ранние версии блоков надо будет удалить (новое определение подгрузится автоматически);</li>
+<li>В составе атрибутов геомаркера появился новый скрытый атрибут «NUMBER_FORMAT», куда записывается числовой или градусный формат записи координат (параметр применяется при процедуре обновления). Также при обновлении теперь учитывается Имя СК, установленной на момент создания блока, и пересчет идёт в эту СК, а не в активную;</li>
+<li>Исправлена ошибка при экспорте векторных файлов: если не были выбраны элементы геометрии, либо были выбраны настройки экспорта, исключающие попадание под них выбранных объектов. Теперь выскакивает исключение;</li>
+<li>Исправлена ошибка, при которой у экспортируемых полилиний (плоских и 3D-полилиний) отсутствовала последняя точка в их геометрии, особенно если они были замкнутыми по свойствам, но не стояла галочка «Рассматривать замкнутые полилинии как полигоны»;</li>
+<li>Исправлена ошибка, когда для временного обрабатываемого файла создавалось дублирующее расширение, и файлы дублировались во временной папке;</li>
+<li>Из числа поддерживаемых растровых форматов удален WEBP (не поддерживается), и ECW (введем поддержку в следующей версии 4.0.2);</li>
+</ul>
+<h3 id="Версия-411-28022024"><a class="header" href="#Версия-411-28022024">Версия 4.1.1 (28.02.2024)</a></h3>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>Из числа поддерживаемых драйверов OGR удален MSSQL (на ПК где он не стоит при запуске любых функций выбрасывалась ошибка об отсутствующем компоненте);</li>
+<li>Для всех внутренних функций, работающих с дробными числами установлена процедура их приведения из строк с учетом текущей локали Windows;</li>
+</ul>
+<h3 id="Версия-412-28022024"><a class="header" href="#Версия-412-28022024">Версия 4.1.2 (28.02.2024)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Папка для расширенных свойств по изменена на корень диска C вместо папки приложения в Program Data;</li>
+</ul>
+<h3 id="Версия-413-29022024"><a class="header" href="#Версия-413-29022024">Версия 4.1.3 (29.02.2024)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Добавлена схема Росреестра «extract_about_property_build» -- информация об объекте недвижимости;</li>
+<li>Исправлено влияние локали Windows (разделитель целой и дробной части) на запрос для получения OSM-подосновы из Интернета. Раннее запрос был некорректен и завершался внутренней ошибкой;</li>
+<li>Исправлена установка параметров инвертирования координат для импорта векторных геоданных. С версии 4.1.0 шло игнорирование этих параметров;</li>
+<li>Скорректировано предупреждение для импорта растра с числом каналов менее трех. Теперь можно импортировать растр с 2 каналами;</li>
+<li>Внесено исключение в обработку файлов Росреестра — если элемент геометрии не содержит поля sk_id, то оно будет заполнено пустым значением. Раннее приложение падало;</li>
+</ul>
+<h3 id="Версия-414-04032024"><a class="header" href="#Версия-414-04032024">Версия 4.1.4 (04.03.2024)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Внутренние обновления во вспомогательных библиотеках TBS для развертывания приложения;</li>
+</ul>
+<h3 id="Версия-415-10032024"><a class="header" href="#Версия-415-10032024">Версия 4.1.5 (10.03.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Новая функция «TBS_GIS_OGR_Tools_Maptrim»: обрезка векторных данных по контуру(контурам);</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>Оптимизация внутренних процедур работы с геометрией: введение исключений на некорректную геометрию, чтобы избежать вылета nanoCAD;</li>
+<li>Вставка линейных ГИС объектов теперь происходит в виде обычной полилинии с уровнем (если отметки Z не заданы или равны одному значению) или в противном случае — 3D-полилинией;</li>
+<li>Временные полилинии для построения границ штриховок и МПолигонов теперь будут удаляться автоматически;</li>
+</ul>
+<h3 id="Версия-416-14032024"><a class="header" href="#Версия-416-14032024">Версия 4.1.6 (14.03.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Новая информативная кнопка «TBS_GIS_AboutVersion» вывода версии настоящего плагина;</li>
+<li>Новые команды работы с атрибутами объектов «TBS_GIS_Attrs_UpToZ» и «TBS_GIS_Attrs_SetToLayer»;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Механика работы команды «TBS_GIS_OGR_Tools_Maptrim»: повышена стабильность работы, новым объектам присваивается только слой и цвет исходного объекта (присвоение других параметров приводило к зависанию nanoCAD);</li>
+<li>Изменение визуального компонента отображения расширенных свойств. Теперь представление больше похоже на штатные окна свойств nanoCAD с возможностью скрытия категорий. При изменении размера окна содержимое гибко подстраивается под новые габариты;</li>
+<li>В лог теперь не записывается информация о загруженных в память nanoCAD библиотеках при инициализации (это избыточная информация);</li>
+</ul>
+<h3 id="Версия-417-30032024"><a class="header" href="#Версия-417-30032024">Версия 4.1.7 (30.03.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Новая команда TBS_GIS_Attrs_Searcher — палитра с возможность поиска объектов по значению атрибута;</li>
+<li>Новая команда — TBS_GIS_Geomarkers_PlaceByData — размещение геомаркера по координатам WGS 84;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Исправлена ошибка в импортере текстовых файлов, если строка файла не содержит символов, либо в строке менее 2 колонок для данного разделителя;</li>
+<li>Добавлено исключение для некорректной полигональной геометрии: если контур содержит менее трех точек, то МПолигон не будет создан (столкнулись при обработке файлов XML Росреестра);</li>
+<li>Добавлены проверки на непустое значение в команды TBS_GIS_Attrs_UpToZ, TBS_GIS_Attrs_SetToLayer;</li>
+<li>Для команды TBS_GIS_Attrs_SetToLayer новые слои теперь создаются как искомое поле, символ «_» и значение этого поля (для удобной последующей сортировки в Диспетчере слоев);</li>
+<li>Для команды TBS_GIS_Attrs_UpToZ скорректировано поведение для плоских полилиний — им присваивается значение Уровня;</li>
+<li>Для команд TBS_GIS_Attrs_UpToZ, TBS_GIS_Attrs_SetToLayer отображение атрибутов объектов теперь идет в алфавитном порядке (для удобства поиска);</li>
+<li>Из профилей обработки геометрии в команде TBS_GIS_OGR_Tools_Maptrim удален режим «Disjoint», он приводил к логическим конфликтам с другими режимами, и точечные объекты оставались нетронутыми;</li>
+<li>Режимы обработки геометрии в команде TBS_GIS_OGR_Tools_Maptrim переименованы: сперва идет русскоязычное описание, а следом — англоязычный аналог;</li>
+<li>Для импорта OSM и PBF файлов векторных данных добавлено дополнительное действие для атрибутов: теперь содержимое атрибута other_tags будет также учтено в свойствах объекта, если там содержатся какие-либо дополнительные свойства;</li>
+<li>Для геомаркеров изменено отображение атрибутов пересчитанных координат. Если фактическое значение дробной части меньше числа округления, то атрибуту «дорисовываются» оставшиеся нули;</li>
+</ul>
+<h3 id="Версия-418-30042024"><a class="header" href="#Версия-418-30042024">Версия 4.1.8 (30.04.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Поддержка 24 версии nanoCAD;</li>
+<li>Команда «TBS_GIS_AttrsManage»: обзор и редактирования расширенных свойств документа;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Общая логика инициализации надстройки (см. раздел Установка надстройки TBS GIS). Теперь библиотека «TBS_GIS_Kernel.dll» прогружается сама, её нельзя указывать вручную через package-файл (чревато неработоспособностью надстройки);</li>
+<li>[dev] Функциональность расширенных свойств перенесена в отдельную библиотеку TBS_PropertySetsManager.dll, все внутренние методы также переориентированы на её использование;</li>
+<li>Палитра атрибутов теперь следит за сбросом выделения и переходом между документами (сбрасывает отображение свойств и обновляет данные для новых документов);</li>
+<li>При закрытии документа свойства теперь автоматически сохраняются в файл;</li>
+<li>Локальное сохранение свойств теперь ведется в файл json вместо xml (масштабное обновление внутренней логики);</li>
+<li>Для расширенных свойств теперь доступно задание внутреннего и отображаемого имени;</li>
+<li>Расширенные свойства теперь сохраняются в векторные файлы при работе функции «Экспорт в векторные форматы»;</li>
+<li>Обновлены иконки для функций, которые раннее не имели своей иконки;</li>
+<li>Импортер текстовых файлов: добавлен профиль импорта геодезических координат в форме ГГ.ММ.СС и возможность вставки данных из буфера обмена (в альтернативу открытия локального файла);</li>
+<li>Пересчет координат векторных файлов: добавлено внутреннее исключение, раннее приводящее к ошибке;</li>
+<li>Векторные данные: добавлен провайдер ESRI File Geodatabase vector (OpenFileGDB) под обработку .gdb.zip файлов;</li>
+</ul>
+<h3 id="Версия-419-26052024"><a class="header" href="#Версия-419-26052024">Версия 4.1.9 (26.05.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Новая команда «TBS_GIS_OGR_DWG_Reproject»: форма пакетного пересчета координат DWG-чертежей;</li>
+<li>Новая команда (концептуально) «TBS_GIS_GDAL_CreateWldFiles»: пакетное создание файлов привязки для растровых изображений в чертеже;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Внутренняя логика обработки объектов чертежа оптимизирована;</li>
+<li>Добавлена поддержка чтения объектов чертежа: Окружность, Таблица, Солид (2D);</li>
+<li>Обработка штриховок удалена из функционала программы (приводила к падению nanoCAD в разных командах);</li>
+</ul>
+<h3 id="Версия-420-27052024"><a class="header" href="#Версия-420-27052024">Версия 4.2.0 (27.05.2024)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Добавлены иконки для ранних команд;</li>
+<li>Для команды «TBS_GIS_OGR_DWG_Reproject» окно теперь автоматически закрывается по завершению команды;</li>
+<li>В форме «TBS_GIS_OGR_DWG_Reproject» появилась строка-пояснение к целевой системе координат;</li>
+<li>Исправлена ошибка поиска библиотеки TBS_GIS_Kernel.dll приводящая к некорректной загрузке TBS GIS;</li>
+</ul>
+<h3 id="Версия-421-31052024"><a class="header" href="#Версия-421-31052024">Версия 4.2.1 (31.05.2024)</a></h3>
+<p><strong>Изменено:</strong></p>
+<ul>
+<li>Команда «TBS_GIS_OGR_DWG_Reproject»: исправление пересчета для блоков, атрибутов блоков и текстовых объектов (некоторые их них раннее не копировались, исправлено), также применяется поворот;</li>
+</ul>
+<h3 id="Версия-422-03062024"><a class="header" href="#Версия-422-03062024">Версия 4.2.2 (03.06.2024)</a></h3>
+<p><strong>Изменено:</strong></p>
+<ul>
+<li>Возвращена поддержка штриховок и Мполигонов в команды TBS_GIS_OGR_DWG_Reproject и прочие, где происходило её считывание и создание новых объектов (изменены алгоритмы чтения и создания штриховки, чтобы не возникало ошибок обработки);</li>
+<li>Исправлена ошибка при инициализации надстройки, приводящая к появлению окна «Советы дня» в платформе nanoCAD и тому, что в первый раз приложения не загружались;</li>
+<li>Команда «TBS_GIS_OGR_DWG_Reproject»: добавлена настройка обработки, при которой точечные объекты (атрибуты блоков, текст) не поворачиваются при пересчете. Отключена по умолчанию;</li>
+</ul>
+<h3 id="Версия-423-422-17062024"><a class="header" href="#Версия-423-422-17062024">Версия 4.2.3 (4.2.2) (17.06.2024)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>TBS_GIS_OGR_DWG_Reproject: добавлена опция настройки игнорирования штриховок при обработке;</li>
+</ul>
+<h3 id="Версия-424-12072024"><a class="header" href="#Версия-424-12072024">Версия 4.2.4 (12.07.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Создание рельефа по растру: возможность указать контуры для подрезки данных рельефа по снимку перед вставкой в модель;</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Пересчет DWG: из пользовательского интерфейса исключена опция «»игнорировать угол поворота», но сама опция срабатывает по умолчанию (т. к. угол считается неверно);</li>
+</ul>
+<h3 id="Версия-425-16092024"><a class="header" href="#Версия-425-16092024">Версия 4.2.5 (16.09.2024)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Поддержка nanoCAD 24.1;
+<strong>Изменено</strong>:</li>
+<li>Для функции «Обрезка по контуру» для полилиний добавлено сохранение исходных отметки, веса линии и типа линии;</li>
+</ul>
+<h3 id="Версия-426-26102024"><a class="header" href="#Версия-426-26102024">Версия 4.2.6 (26.10.2024)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Состав исполняемых библиотек: имевшиеся ранние библиотеки TBS_GIS_Loader.dll и TBS_GIS_UI.dll были слиты в TBS_GIS_Logic.dll; она же стала загрузочной библиотекой;</li>
+<li>Все окна переписаны на WPF (раннее были на Windows Forms), местами сильно изменился их дизайн и теперь при изменении масштаба экрана они будут вести себя более корректно;</li>
+<li>Версии библиотек теперь имеют строгое написание (дополнительная цифра .0);</li>
+</ul>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Механизм сохранения параметров настройки окон в конфигурацию с возможностью загрузки (применения настроек к полям и настройкам окна). Реализовано для функции экспорта векторных данных в экспериментальном режиме;</li>
+</ul>
+<h3 id="Версия-427-22112024"><a class="header" href="#Версия-427-22112024">Версия 4.2.7 (22.11.2024)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Отключена возможность загрузки открытого рельефа обоих типов (ASTER GDEM, FABDEM 1.2) с Интернета для команды TBS_GIS_OpenData_LoadDEM, можно использовать только, если будет локальный кэш;</li>
+</ul>
+<h3 id="Версия-428-17022025"><a class="header" href="#Версия-428-17022025">Версия 4.2.8 (17.02.2025)</a></h3>
+<p><strong>Добавлено</strong>:</p>
+<ul>
+<li>Растровые геоданные — поддержка USGSDEM (*.dem-файлы);</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Логика загрузки надстройки в nanoCAD – теперь для каждой версии nanoCAD имеется отдельный package-файл, загружающий все необходимые библиотеки — повышена стабильность;</li>
+<li>Удалена команда «Растеризация облака точек» -- её функциональность перешла в плагин «TNS NPC Toolkit»;</li>
+<li>Команда «Пересчет облака точек» теперь работает с родными облаками точек nanoCAD, в качестве результата пересчета создает новое облако точек в этом же документе временно отключена из-за проблемы создания нового облака точек;</li>
+<li>Из состава основных библиотек надстройки удалена «TBS_GIS_OSGeo_PDAL_Wrapper», её функциональность перенесена в «TBS_GIS_Kernel», соответствующим образом изменены package-файлы;</li>
+<li>Некоторые диалоговые окна — исправлено масштабирование элементов;</li>
+<li>Форма просмотра и назначения систем координат — таблица сделана «только для чтения» во избежание случайных попыток изменения (функции аварийно завершали работу);</li>
+<li>[TBS_GIS_OGR_Export] Экспортировать векторные геоданные теперь можно без указания целевой системы координат;</li>
+<li>[TBS_GIS_OGR_Export] Внесено исключение, если выбранный тип данных для сохранения не поддерживает данный тип геометрии, в консоли nanoCAD будет записана ошибка, а сама процедура экспорта прервется без вылета ошибки;</li>
+<li>Включена обратно возможность загрузки открытого рельефа с Интернета;</li>
+</ul>
+<h3 id="Версия-429-07032025"><a class="header" href="#Версия-429-07032025">Версия 4.2.9 (07.03.2025)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Функция «Перепроецирование DWG» - 3d-полилинии теперь отрисовываются заново, не редактируются, так как в ином случае они проецировались неверно;</li>
+<li>Загрузка открытых данных рельефа — ожидание загрузки снижено с 60 до 20 секунд;</li>
+</ul>
+<h3 id="Версия-430-27032025"><a class="header" href="#Версия-430-27032025">Версия 4.3.0 (27.03.2025)</a></h3>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Для команды импорта векторных и растровых геоданных в диалог выбора файлов добавлена группа «Все файлы» -- для всех допустимых расширений, также список упорядочен по алфавиту (раннее был разброс);</li>
+<li>Для палитры «Расширенные свойства объекта» установлена фиксированная высота табличного отображения свойств (раннее при большом числе свойств таблица уходила за пределы окна);</li>
+<li>В заголовок импортера векторных геоданных МГГТ GML добавлена подпись «<em>(преднастроенный импорт ТОЛЬКО для файлов от ГБУ МосГорГеоТрест)</em>» для предупреждения Пользователя, что это особая форма импорта GML-данных (обычные GML следует импортировать через общий импорт TBS_GIS_OGR_IMPORT);</li>
+<li>Для всех диалоговых окон исправлен визуальный баг, когда они раскрываются на избыточное пространство;</li>
+<li>Исправлена критичная ошибка, при которой не всегда отрабатывал одиночный и/или групповой импорт векторных геоданных — в чертеже отсутствовали данные после вставки;</li>
+<li>В диалоговые окна импорта векторных геоданных, МГГТ-GML и Росреестр-XML добавлены примечания, что эти окна предназначены для импорта соответствующих геоданных (для предупреждения пользователей);</li>
+</ul>
+<h3 id="Версия-500-25052026"><a class="header" href="#Версия-500-25052026">Версия 5.0.0 (25.05.2026)</a></h3>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>Поддержка nanoCAD 22, 23-26, поддержка AutoCAD 2025+;</li>
+<li>Возможность работы TBS GIS с модулем nanoCAD Топоплан;</li>
+</ul>
+<p><strong>Изменено</strong></p>
+<ul>
+<li>Полный рефакторинг всего приложения: реализация клиент-серверной архитектуры;</li>
+<li>Переписаны все функции - повыше стабильность работы команд;</li>
+<li>Атрибутика векторных геоданных теперь сохраняется в расширенные данные объектов чертежа, больше не требуется хранение свойств во внешних файлах;</li>
+<li>Обновлены библиотеки OSGeo GDAL, proj;</li>
+<li>Обновлена версия используемой библиотеки СК proj.db;</li>
+<li>Изменена логика инициализации ресурсов приложения, добавлены новые настройки в конфиг приложения;</li>
+<li>Обрабатываемые плагином векторные и растровые данные теперь не копируются во временную папку, они обрабатываются по исходным путям;</li>
+<li>Для создания рельефа по растру добавлена возможность кратного упрощения\интерполяции высот (вместо процентного изменения в ранних версиях), растр теперь автоматически подрезается по заданному контуру (результирующие точки теперь будут лежать внутри контура);</li>
+<li>Геометрия векторных геоданных в виде полигонов теперь рисуется только штриховками;</li>
+<li>Команда "Кодификатор атрибутов" удалена из ленты, её функциональность оставлена для импорта МГГТ, вызывается автоматически;</li>
+<li>Команды "Настроить конфигурацию", "Импорт WKT-определений СК", "Создать новую СК по WKT-коду" перенесены в отдельное приложение с изменениями в логике работы;</li>
+</ul>
+<p><strong>Удалено</strong></p>
+<ul>
+<li>Команды по созданию новых систем координат "Импорт определений СК из Autodesk Map 3D", "Создать новую СК по параметрам", "Импорт определений СК из текстового файла" отложены к реализации;</li>
+<li>Из-за прекращения использования МПолигонов удалены команды "МПолигоны в штриховку", "Штриховка в МПолигон", "Извлечь границы полигонов";</li>
+<li>Команда "Импорт растра с привязкой" удалена, вместо этого правило использования файла привязки реализовано в стандартном импорте растра;</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
