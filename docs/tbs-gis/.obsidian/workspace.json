@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TBSGISDOC_0_0_0_StartPage.md",
+                "file": "TBSGISDOC_4_0_0_cadPlugin.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TBSGISDOC_0_0_0_StartPage"
+              "title": "TBSGISDOC_4_0_0_cadPlugin"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 366.5
   },
   "right": {
     "id": "274f38f1b37371f2",
@@ -186,16 +186,20 @@
   "active": "18a05f74955043bf",
   "lastOpenFiles": [
     "SUMMARY.md",
-    "TBSGISDOC_4_4_0_cadPlugin_Geomarkers.md",
-    "TBSGISDOC_0_0_0_StartPage.md",
-    "assets/image-2026-05-23-2.png",
-    "TBSGISDOC_20_updates.md",
-    "TBSGISDOC_4_3_1_cadPlugin_GDAL_import.md",
+    "TBSGISDOC_2_0_0_Installation.md",
+    "TBSGISDOC_1_0_0_Introduction.md",
+    "TBSGISDOC_4_6_0_cadPlugin_Attrs.md",
     "TBSGISDOC_4_5_0_cadPlugin_OpenData.md",
+    "assets/image-2026-05-24.png",
+    "TBSGISDOC_3_1_0_CsManager.md",
     "TBSGISDOC_2_1_0_ConfiguratorApp.md",
+    "TBSGISDOC_20_updates.md",
+    "TBSGISDOC_0_0_0_StartPage.md",
+    "TBSGISDOC_4_4_0_cadPlugin_Geomarkers.md",
+    "assets/image-2026-05-23-2.png",
+    "TBSGISDOC_4_3_1_cadPlugin_GDAL_import.md",
     "assets/image-2026-05-23-1.png",
     "assets/image-2026-05-23.png",
-    "TBSGISDOC_2_0_0_Installation.md",
     "TBSGISDOC_4_2_7_cadPlugin_OGR_linkTexts.md",
     "TBSGISDOC_3_3_0_GeoExport.md",
     "TBSGISDOC_3_2_0_GeoImport.md",
@@ -212,13 +216,10 @@
     "assets/image-2026-05-22-11.png",
     "assets/image-2026-05-22-10.png",
     "assets/image-2026-05-22-9.png",
-    "TBSGISDOC_4_6_0_cadPlugin_Attrs.md",
     "assets/image-2026-05-22-8.png",
     "assets/image-2026-05-22-7.png",
     "TBSGISDOC_4_2_2_cadPlugin_OGR_export.md",
     "TBSGISDOC_4_1_0_cadPlugin_CS.md",
-    "assets/image-2026-05-22-6.png",
-    "TBSGISDOC_4_0_0_cadPlugin.md",
-    "TBSGISDOC_3_1_0_CsManager.md"
+    "TBSGISDOC_4_0_0_cadPlugin.md"
   ]
 }
