@@ -6,4 +6,4 @@ HTML-выгрузка для проектов справочников в mdBook
 
 ## Содержимое
 
-* [Руководство пользователя TBS GIS](https://tbs-software.github.io/TBS-Apps-Online-Docs/docs/tbs-gis/);
+* [Руководство пользователя TBS GIS](https://tbs-software.github.io/TBS-Apps-Online-Docs/docs/tbs-gis/index.html);
