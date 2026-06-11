@@ -172,18 +172,10 @@
 <p>Для наборов геометрий ("MultiPoint", "MultiLineString", "GeometryCollection") атрибуты группы копируются в каждый из объектов. Атрибуты доступны к отображению через команду TBS_GIS_Attrs_ShowPallete.</p>
 <h2 id="Импорт-МГГТ-tbs_gis_ogr_import_mggt"><a class="header" href="#Импорт-МГГТ-tbs_gis_ogr_import_mggt">Импорт МГГТ (TBS_GIS_OGR_Import_MGGT)</a></h2>
 <p><img src="./assets/Pasted_image_20260522213453.png" alt="" /></p>
-<p>Импортируются файлы GML. Для импортированных файлов автоматически запускается процедура декодирования содержимого атрибутов (замены кодов на конкретные значение из XSD-файлов схем данных).</p>
+<p>См. пояснение к функции <a href="./TBSGISDOC_3_2_1_GeoImport_MGGT.html">тут</a>.</p>
 <h2 id="Импорт-xml-Росреестра-tbs_gis_ogr_import_rosreestr"><a class="header" href="#Импорт-xml-Росреестра-tbs_gis_ogr_import_rosreestr">Импорт XML Росреестра (TBS_GIS_OGR_Import_Rosreestr)</a></h2>
 <p><img src="./assets/Pasted_image_20260522213327.png" alt="" /></p>
-<p>Поддерживается ограниченное число схем:</p>
-<ul>
-<li>Кадастровый план территории (КПТ): <a href="https://rosreestr.gov.ru/upload/Doc/10-upr/KPT_v10.zip">KPT_v10</a>;</li>
-<li>Выписка о земельном участке: <a href="https://rosreestr.gov.ru/upload/Doc/10-upr/extract_about_property_land_v01.rar">extract_about_property_land</a>;</li>
-<li>Выписка об объекте недвижимости <a href="https://rosreestr.gov.ru/upload/Doc/10-upr/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D1%8B_extract_about_property_build_v01.pdf">extract_about_property_build</a>;
-Перечень поддерживаемых схем может быть расширен по запросу с предоставлением TBS примеров XML схем.</li>
-</ul>
-<p>Принцип обработки файлов Росреестра - конвертация их программно в GPKG-файл с дальнейшей обработкой как стандартных векторных геоданных.</p>
-<p>Если в атрибутах геометрии XML-файлов Росреестра заполнен тэг <code>sk_id</code>, то он выводится как имя системы координат файла. В любом случае для этих файлов необходимо задание СК вручную через форму диалога.</p>
+<p>См. пояснение к функции <a href="./TBSGISDOC_3_2_1_GeoImport_RRXML.html">тут</a>.</p>
 
                     </main>
 
