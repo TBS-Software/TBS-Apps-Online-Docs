@@ -627,12 +627,30 @@
 <li>[API, TBS-GIS-Client] Переход с <code>RestSharp</code> на обычный <code>System.Net</code> в части реализации Rest-клиентского приложения;</li>
 <li>[API, TBS-GIS-Client, TBS-GIS-Common, TBS-GIS-Server] Переход с <code>System.Text.Json</code> на <code>Newtonsoft.Json</code> для работы с Json-данными;</li>
 </ul>
+<h3 id="Версия-511-17062026"><a class="header" href="#Версия-511-17062026">Версия 5.1.1 (17.06.2026)</a></h3>
+<p><strong>Добавлено</strong></p>
+<ul>
+<li>Поддержка Топоматик Robur;</li>
+<li>Возможность выбора режима обновления геомаркеров - только выбранные или все (как было раньше);</li>
+</ul>
+<p><strong>Изменено</strong>:</p>
+<ul>
+<li>Все библиотеки и вспомогательные приложения TBS-GIS стали иметь "цифровые подписи" для избегания конфликтов зависимостей, кроме этого это было условие работоспособности плагина в Топоматик Robur;</li>
+<li>Для модуля лицензирования удалена библиотека Standard.Licensing, логика по формированию и валидации лицензии переписана без использования сторонних пакетов;</li>
+<li>Используемая в библиотеках приложения библиотека <code>Newtonsoft.Json</code> пересобрана с именем <code>Newtonsoft.Json.TBS</code> для устранения потенциальных конфликтов зависимостей с другими пользовательскими плагинами на конечных ПК;</li>
+<li>Исправлена ссылка на онлайн-документацию по приложению в команде "Справка";</li>
+<li>В окно диспетчера СК не задавалась активная СК модели при её наличии - исправлено;</li>
+<li>Слегка переписаны диалоги менеджера СК, импортера текстовых файлов - элемент WPF DataGrid заменен в первом случае на ListiVew, во втором на ListBox для возможности сборки проекта под .NET Framework 3.5 (для Robur);</li>
+<li>Изменение принципа работы с геомаркерами - сохранение информации в атрибутах о полных координатах точки в данной СК, если используется сдвиг;</li>
+<li>Перемещение локальных ресурсов (XSD схем для декодирования свойств при импорте МГГТ GML, Росреестр XML) в ресурсную библиотеку <code>TBS-GIS-Resources.dll</code>;</li>
+<li>Добавление исключения в пост-обработку векторных геоданных при связи с атрибутами в CAD: если в процессе импорта геометрии не был создан объект, то попытка сохранения атрибутов в него не производится;</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="TBSGISDOC_5_7_0_rengaPlugin_Help.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="TBSGISDOC_6_7_0_roburPlugin_Help.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -643,7 +661,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="TBSGISDOC_5_7_0_rengaPlugin_Help.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="TBSGISDOC_6_7_0_roburPlugin_Help.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 

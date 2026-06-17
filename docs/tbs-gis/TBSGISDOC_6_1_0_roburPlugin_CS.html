@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Часть 4.2.2. Экспорт векторных геоданных - Руководство пользователя TBS-GIS</title>
+        <title>Раздел 6.1. Работа с системами координат - Руководство пользователя TBS-GIS</title>
 
 
         <!-- Custom HTML head -->
@@ -152,27 +152,25 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="Экспорт-векторных-геоданных---команда-Экспорт-tbs_gis_ogr_export"><a class="header" href="#Экспорт-векторных-геоданных---команда-Экспорт-tbs_gis_ogr_export">Экспорт векторных геоданных - команда "Экспорт" (TBS_GIS_OGR_Export)</a></h1>
-<p><img src="./assets/Pasted_image_20260522213242.png" alt="" /></p>
-<p>Параметры экспорта настраиваются в <a href="./TBSGISDOC_3_3_0_GeoExport.html">диалоговом окне экспорта</a>.</p>
-<p>После нажатия на кнопку "Экспортировать" в диалоге будет предложен выбор объектов в чертеже. Фильтр типов объектов будет завязан на выбранное геометрическое представление в диалогах экспорта:</p>
-<ul>
-<li>Точечные объекты: Вхождение блока с атрибутами, Точка, Текст, Многострочный текст, Окружность (в виде точки), Таблица (в виде точки);</li>
-<li>Линейные объекты: Полилиния, Отрезок, 3d-полилиния;</li>
-<li>Площадные объекты: Штриховка, 3D-грань, полилиния с флагом Замкнуто = Да;</li>
-<li>Коллекция геометрии - все перечисленные выше типы;</li>
-</ul>
-<p>Если выбранный формат файла векторных геоданных позволяет сохранить в одном файле несколько слоев, то все они будут сохранены в выбранный файл. В противном случае - в несколько файлов, с суффиксом "-part-НОМЕР", также будет несколько файлов, если набор атрибутов слоя будет разным - так, разные вхождения блоков будут также сохранены по разным файлам.</p>
+                        <h1 id="Работа-с-системами-координат"><a class="header" href="#Работа-с-системами-координат">Работа с системами координат</a></h1>
+<h2 id="Команда-Менеджер-СК"><a class="header" href="#Команда-Менеджер-СК">Команда "Менеджер СК"</a></h2>
+<p><img src="assets/image-2026-06-17-3.png" alt="" /></p>
+<p>Позволяет задать или удалить из чертежа информацию о системе координат. По нажатию на кнопку запускается модальное окно <a href="./TBSGISDOC_3_1_0_CsManager.html">Менеджера систем координат</a>. Информация о назначенной системе координат сохраняется в пользовательские свойства Атрибутов проекта (в настоящее время они почему-то не отображаются из-под UI).</p>
+<p>Сохраняются имя и код системы координат, для удобства их интерпретации на другом ПК или в другом ПО. Работа с определением СК внутри приложения TBS-GIS строится на основе "кода СК", второй записи. Первая запись, хранящая имя, нужна только для пользователя.</p>
+<p>При выборе функции "Удалить" в окне "Менеджера систем координат" значение полей выше очищаются, но сами свойства остаются.</p>
+<h2 id="Команда-Обновить-ресурсы-СК"><a class="header" href="#Команда-Обновить-ресурсы-СК">Команда "Обновить ресурсы СК"</a></h2>
+<p><img src="assets/image-2026-06-17-4.png" alt="" /></p>
+<p>Вспомогательная команда. Если имело место изменение базы данных систем координат, то данная функция производит повторное считывание базы и кэширование определений СК. Обновленные определения будут доступны при следующих вызовах менеджера систем координат.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="TBSGISDOC_4_2_1_cadPlugin_OGR_import.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="TBSGISDOC_6_0_0_roburPlugin.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="TBSGISDOC_4_2_3_cadPlugin_OGR_geomAnalyze.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="TBSGISDOC_6_2_0_roburPlugin_OGR.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -182,11 +180,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="TBSGISDOC_4_2_1_cadPlugin_OGR_import.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="TBSGISDOC_6_0_0_roburPlugin.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="TBSGISDOC_4_2_3_cadPlugin_OGR_geomAnalyze.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="TBSGISDOC_6_2_0_roburPlugin_OGR.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
