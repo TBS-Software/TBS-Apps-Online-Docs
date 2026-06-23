@@ -4,53 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "e54b387b4adccb49",
+        "id": "d1185e4c4021ca4f",
         "type": "tabs",
         "children": [
           {
-            "id": "57438986d10905f0",
+            "id": "ecb96698c3c2bf28",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SUMMARY.md",
+                "file": "TBSGISDOC_20_updates.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SUMMARY"
-            }
-          },
-          {
-            "id": "1c4d6a90a1b8e800",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SUMMARY.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "SUMMARY"
-            }
-          },
-          {
-            "id": "d6180157d674eeb4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "TBSGISDOC_6_7_0_roburPlugin_Help.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "TBSGISDOC_6_7_0_roburPlugin_Help"
+              "title": "TBSGISDOC_20_updates"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -212,43 +183,43 @@
       "bases:Создать новую базу": false
     }
   },
-  "active": "d6180157d674eeb4",
+  "active": "ecb96698c3c2bf28",
   "lastOpenFiles": [
+    "TBSGISDOC_2_0_0_Installation.md",
+    "TBSGISDOC_1_1_0_Licensing.md",
+    "TBSGISDOC_1_0_0_Introduction.md",
+    "TBSGISDOC_0_0_0_StartPage.md",
+    "SUMMARY.md",
+    "TBSGISDOC_20_updates.md",
+    "TBSGISDOC_3_5_BasePoints.md",
+    "TBSGISDOC_3_4_0_GeomarkersSettings.md",
+    "TBSGISDOC_3_2_7_GeoImport_Geomarkers.md",
+    "TBSGISDOC_3_2_3_GeoImport_TextFiles.md",
+    "TBSGISDOC_3_2_4_GeoImport_Raster.md",
+    "TBSGISDOC_3_2_5_GeoImport_RasterDEM.md",
+    "TBSGISDOC_3_2_6_GeoImport_OpenData.md",
+    "TBSGISDOC_6_0_0_roburPlugin.md",
+    "TBSGISDOC_6_7_0_roburPlugin_Help.md",
+    "TBSGISDOC_4_3_0_cadPlugin_GDAL.md",
+    "TBSGISDOC_4_2_7_cadPlugin_OGR_linkTexts.md",
+    "TBSGISDOC_4_2_6_cadPlugin_OGR_importText.md",
+    "TBSGISDOC_4_2_5_cadPlugin_OGR_dwgProj.md",
+    "TBSGISDOC_4_2_4_cadPlugin_OGR_geomTrim.md",
+    "TBSGISDOC_4_2_3_cadPlugin_OGR_geomAnalyze.md",
+    "TBSGISDOC_4_2_2_cadPlugin_OGR_export.md",
+    "TBSGISDOC_4_2_1_cadPlugin_OGR_import.md",
+    "TBSGISDOC_4_2_0_cadPlugin_OGR.md",
+    "TBSGISDOC_4_1_0_cadPlugin_CS.md",
+    "TBSGISDOC_4_0_0_cadPlugin.md",
     "assets/image-2026-06-17-43.png",
     "assets/image-2026-06-17-42.png",
-    "TBSGISDOC_6_7_0_roburPlugin_Help.md",
-    "SUMMARY.md",
-    "TBSGISDOC_6_6_0_roburPlugin_Attrs.md",
     "assets/image-2026-06-17-41.png",
     "assets/image-2026-06-17-40.png",
     "assets/image-2026-06-17-39.png",
     "assets/image-2026-06-17-38.png",
     "assets/image-2026-06-17-37.png",
-    "TBSGISDOC_6_5_0_roburPlugin_OpenData.md",
     "assets/image-2026-06-17-36.png",
     "assets/image-2026-06-17-35.png",
-    "TBSGISDOC_6_4_0_roburPlugin_Geomarkers.md",
-    "assets/image-2026-06-17-34.png",
-    "assets/image-2026-06-17-33.png",
-    "TBSGISDOC_6_3_1_roburPlugin_GDAL_import.md",
-    "TBSGISDOC_6_3_2_roburPlugin_GDAL_tin2raster.md",
-    "TBSGISDOC_6_3_0_roburPlugin_GDAL.md",
-    "TBSGISDOC_6_2_0_roburPlugin_OGR.md",
-    "TBSGISDOC_6_2_4_roburPlugin_OGR_importText.md",
-    "TBSGISDOC_3_2_3_GeoImport_TextFiles.md",
-    "TBSGISDOC_6_2_3_roburPlugin_OGR_geomAnalyze.md",
-    "TBSGISDOC_6_2_3_roburPlugin_OGR_importText.md",
-    "TBSGISDOC_6_2_2_roburPlugin_OGR_export.md",
-    "TBSGISDOC_6_2_1_roburPlugin_OGR_import.md",
-    "TBSGISDOC_6_1_0_roburPlugin_CS.md",
-    "TBSGISDOC_5_1_0_roburPlugin_CS.md",
-    "TBSGISDOC_6_0_0_roburPlugin.md",
-    "TBSGISDOC_2_0_0_Installation.md",
-    "TBSGISDOC_1_1_0_Licensing.md",
-    "TBSGISDOC_0_0_0_StartPage.md",
-    "TBSGISDOC_1_0_0_Introduction.md",
-    "TBSGISDOC_4_4_0_cadPlugin_Geomarkers.md",
-    "TBSGISDOC_20_updates.md",
-    "TBSGISDOC_5_0_0_rengaPlugin.md"
+    "assets/image-2026-06-17-34.png"
   ]
 }
