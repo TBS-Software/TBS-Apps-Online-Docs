@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Раздел 6.5. Работа с открытыми геоданными - Руководство пользователя TBS-GIS</title>
+        <title>Часть 3.2.7. Замечания по импорту тайловых геоданных - Руководство пользователя TBS-GIS</title>
 
 
         <!-- Custom HTML head -->
@@ -152,25 +152,24 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="Работа-с-открытыми-геоданными"><a class="header" href="#Работа-с-открытыми-геоданными">Работа с открытыми геоданными</a></h1>
-<p>Описание функций см. в <a href="./TBSGISDOC_3_2_6_GeoImport_OpenData.html">отдельной статье</a>. Для Robur опорным контуром является замкнутая полилиния.</p>
-<h2 id="Команда-Загрузить-osm"><a class="header" href="#Команда-Загрузить-osm">Команда "Загрузить OSM"</a></h2>
-<p><img src="assets/image-2026-06-17-35.png" alt="" /></p>
-<h2 id="Команда-Загрузить-open-elevation"><a class="header" href="#Команда-Загрузить-open-elevation">Команда "Загрузить Open Elevation"</a></h2>
-<p><img src="assets/image-2026-06-17-36.png" alt="" /></p>
-<h2 id="Команда-Загрузить-tms"><a class="header" href="#Команда-Загрузить-tms">Команда "Загрузить TMS"</a></h2>
-<p><img src="assets/image-2026-06-28-4.png" alt="" /></p>
-<p>См. описание функции в <a href="./TBSGISDOC_3_2_7_GeoImport_TMS.html">отдельной статье</a>.</p>
+                        <h1 id="Замечания-по-импорту-тайловых-геоданных"><a class="header" href="#Замечания-по-импорту-тайловых-геоданных">Замечания по импорту тайловых геоданных</a></h1>
+<p>Команда требует наличия подключения к сети Интернет. При вызове команды от Пользователя необходимо указать замкнутый контур, в пределах которого необходимо загрузить данные.</p>
+<p>Если чертежу не задана система координат, то обработка не начнется, так как необходим пересчет координат в системы координат тайловых подоснов (EPSG:3857, 3395 или иные).</p>
+<p><img src="assets/image-2026-06-28-1.png" alt="" /></p>
+<p>Окно содержит список доступных провайдеров тайловых подоснов (TMS). Пользователю необходимо выбрать один из сервисов. Во второй колонке приведено пояснение, является ли сервис спутников (Satellite), картой (Standard), гибридной картой - спутником + схемой (Hybrid). Для каждого сервиса есть перечень уровней масштаба тайлов. Обычно от 0 до 19 или точнее. Чем выше число, тем больше разрешение растра. Наглядная схема детализации представлена в OSM Wiki, можно ознакомиться с ней по <a href="https://wiki.openstreetmap.org/wiki/Zoom_levels">ссылке</a>.</p>
+<p>При выборе сервиса величина масштаба будет сброшена. Необходимо выбрать желаемый уровень детализации растра в списке ниже. Для удобства информация об уровнях детализации приведена в двух величинах - классическому уровню (первая колонка) и примерному топо-масштабу (вторая колонка). Желательно загружать данные до 10 МП (зеленая окраска разрешения). Чем больше детализация и площадь зоны, тем дольше будут загружаться данные.</p>
+<p><strong>Примечание</strong>: к сожалению могут иметь место блокировки запросов к геоданным в Вашей сети. Возможности это обойти нет. Если загрузка длительное время не идет, то закройте вручную запущенное приложение <code>TBS-GIS-Server.exe</code> и запустите команду снова для другого сервиса, для меньшей зоны или уровня детализации. Яндекс, как поставщик геоданных, также "любит" блокировать доступ.</p>
+<p>После нажатия на "Загрузить" произойдет попытка загрузки тайлов, их объединения и выдачи в форме одного растра. Он будет возвращен в виде стандартного диалога импорта растровых геоданных.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="TBSGISDOC_6_4_0_roburPlugin_Geomarkers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="TBSGISDOC_3_2_6_GeoImport_OpenData.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="TBSGISDOC_6_6_0_roburPlugin_Attrs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="TBSGISDOC_3_3_0_GeoExport.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -180,11 +179,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="TBSGISDOC_6_4_0_roburPlugin_Geomarkers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="TBSGISDOC_3_2_6_GeoImport_OpenData.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="TBSGISDOC_6_6_0_roburPlugin_Attrs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="TBSGISDOC_3_3_0_GeoExport.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
