@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TBSGISDOC_20_updates.md",
+                "file": "TBSGISDOC_1_1_0_Licensing.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TBSGISDOC_20_updates"
+              "title": "TBSGISDOC_1_1_0_Licensing"
             }
           }
         ]
@@ -185,13 +185,15 @@
   },
   "active": "4f9fade55f25f766",
   "lastOpenFiles": [
+    "assets/image-2026-06-29-1.png",
+    "assets/image-2026-06-29.png",
+    "SUMMARY.md",
+    "TBSGISDOC_20_updates.md",
     "TBSGISDOC_6_5_0_roburPlugin_OpenData.md",
     "assets/image-2026-06-28-4.png",
     "TBSGISDOC_4_5_0_cadPlugin_OpenData.md",
     "TBSGISDOC_5_5_0_rengaPlugin_OpenData.md",
     "assets/image-2026-06-28-3.png",
-    "SUMMARY.md",
-    "TBSGISDOC_20_updates.md",
     "assets/image-2026-06-28-2.png",
     "TBSGISDOC_3_2_7_GeoImport_TMS.md",
     "assets/image-2026-06-28-1.png",
@@ -218,7 +220,6 @@
     "assets/image-2026-06-17-43.png",
     "assets/image-2026-06-17-42.png",
     "assets/image-2026-06-17-41.png",
-    "assets/image-2026-06-17-40.png",
-    "assets/image-2026-06-17-39.png"
+    "assets/image-2026-06-17-40.png"
   ]
 }
